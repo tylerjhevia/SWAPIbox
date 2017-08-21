@@ -4,7 +4,7 @@ const Controls = ({ apiCall }) => {
   return (
     <div className="buttons">
       <div onClick={e => apiCall(e.target.innerHTML)} className="people-btn">
-        Peoples
+        People
       </div>
       <div onClick={e => apiCall(e.target.innerHTML)} className="planet-btn">
         Planets

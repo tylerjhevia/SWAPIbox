@@ -26,19 +26,29 @@ class App extends Component {
   getApi(callType) {
     const lowerCallType = callType.toLowerCase();
     if (callType !== "Favorite") {
-      fetch(`https://swapi.co/api/${callType}?format=api`)
+      fetch(`https://swapi.co/api/${lowerCallType}/`)
         .then(data => data.json())
         .then(data => {
-          console.log(data);
-        });
+          this.cleanApi(data.results);
+        })
+        .catch(console.log("oops"));
     }
   }
 
-  cleanApi() {
-    console.log("hey");
+  cleanApi(dataArray) {
+    console.log(dataArray);
+    this.setState({
+      data: dataArray
+    });
   }
+
   render() {
-    return <Controls apiCall={this.getApi} />;
+    return (
+      <div>
+        <Controls apiCall={this.getApi} />
+        <CardDisplay itemData={this.state.data} />
+      </div>
+    );
   }
 }
 

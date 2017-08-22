@@ -11,10 +11,12 @@ const CardDisplay = ({ itemData }) => {
 
   return (
     <div className="outer-card-container">
-      <div className="card-container-spacer"></div>
+
       <section className="card-container">
         {itemCard}
+        <div className="card-container-spacer"></div>
       </section>
+      <div className="card-container-spacer"></div>
 
     </div>
   );

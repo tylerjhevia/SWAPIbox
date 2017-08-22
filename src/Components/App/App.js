@@ -44,11 +44,14 @@ class App extends Component {
 
   render() {
     return (
+      
       <div>
+        <Background />
         <Controls apiCall={this.getApi} />
         <CardDisplay itemData={this.state.data} />
       </div>
     );
+
   }
 }
 

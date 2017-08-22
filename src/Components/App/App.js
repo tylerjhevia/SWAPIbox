@@ -38,7 +38,10 @@ class App extends Component {
     console.log("hey");
   }
   render() {
-    return <Controls apiCall={this.getApi} />;
+    return (
+      <Controls apiCall={this.getApi} />,
+      <Background />
+  )
   }
 }
 

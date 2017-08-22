@@ -8,8 +8,12 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
   if (favClicked) {
     const mappedFavs = favCards.map((el, i) => <Card key={i} itemData={el} />);
     return (
-      <div className="fav-container">
-        {mappedFavs}
+      <div className="outer-card-container">
+        <section className="card-container">
+          {mappedFavs}
+          <div className="card-container-spacer" />
+        </section>
+        <div className="card-container-spacer" />
       </div>
     );
   }
@@ -22,13 +26,11 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
 
   return (
     <div className="outer-card-container">
-
       <section className="card-container">
         {itemCard}
-        <div className="card-container-spacer"></div>
+        <div className="card-container-spacer" />
       </section>
-      <div className="card-container-spacer"></div>
-
+      <div className="card-container-spacer" />
     </div>
   );
 };

@@ -1,21 +1,18 @@
 import React from "react";
-
-import Helper from "../Helper/Helper"
-import chewyAudio from '../../assets/Chewbacca roar.mp3';
-import haveYouAudio from '../../assets/I have you now.mp3';
-import strongAudio from '../../assets/Strong with the force.mp3';
+import chewyAudio from "../../assets/Chewbacca roar.mp3";
+import haveYouAudio from "../../assets/I have you now.mp3";
+import strongAudio from "../../assets/Strong with the force.mp3";
 
 import "./Card.css";
 
 const Card = props => {
   const personCard = () => {
     return (
-
       <div
         className="card person-card"
         onClick={() => props.favorites(props.itemData)}
-        >
-        <div className='card-background'></div>
+      >
+        <div className="card-background" />
         <h3 className="card-name">
           {" "}{props.itemData.name}{" "}
         </h3>
@@ -23,11 +20,13 @@ const Card = props => {
           {props.itemData.species}
         </p>
         <p className="homeworld">
-          {Helper(props.itemData.homeworld)}
+          {props.itemData.homeworld}
         </p>
-        <p className="population">1,000,000</p>
-        <audio className='background-audio' autoPlay>
-          <source src={ chewyAudio }></source>
+        <p className="population">
+          {props.itemData.population}
+        </p>
+        <audio className="background-audio" autoPlay>
+          <source src={chewyAudio} />
         </audio>
       </div>
     );
@@ -35,12 +34,11 @@ const Card = props => {
 
   const vehicleCard = () => {
     return (
-
       <div
         className="card vehicle-card"
         onClick={() => props.favorites(props.itemData)}
-        >
-        <div className='card-background'></div>
+      >
+        <div className="card-background" />
         <h3 className="vehicle-name">
           {props.itemData.name}
         </h3>
@@ -53,8 +51,8 @@ const Card = props => {
         <p className="passenger-count">
           {props.itemData.passengers}
         </p>
-        <audio className='background-audio' autoPlay>
-          <source src={ haveYouAudio }></source>
+        <audio className="background-audio" autoPlay>
+          <source src={haveYouAudio} />
         </audio>
       </div>
     );
@@ -62,13 +60,11 @@ const Card = props => {
 
   const planetCard = () => {
     return (
-
-
       <div
         className="card planet-card"
         onClick={() => props.favorites(props.itemData)}
-        >
-        <div className='card-background'></div>
+      >
+        <div className="card-background" />
         <h3 className="planet-name">
           {props.itemData.name}
         </h3>
@@ -81,11 +77,9 @@ const Card = props => {
         <p className="climate">
           {props.itemData.climate}
         </p>
-        <p className='residence'>
-          residence
-        </p>
-        <audio className='background-audio' autoPlay>
-          <source src={ strongAudio }></source>
+        <p className="residence">residence</p>
+        <audio className="background-audio" autoPlay>
+          <source src={strongAudio} />
         </audio>
       </div>
     );

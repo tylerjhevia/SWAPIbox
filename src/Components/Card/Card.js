@@ -5,10 +5,12 @@ import "./Card.css";
 const Card = props => {
   const personCard = () => {
     return (
+
       <div
         className="card person-card"
         onClick={() => props.favorites(props.itemData)}
-      >
+        >
+        <div className='card-background'></div>
         <h3 className="card-name">
           {" "}{props.itemData.name}{" "}
         </h3>
@@ -25,10 +27,12 @@ const Card = props => {
 
   const vehicleCard = () => {
     return (
+
       <div
         className="card vehicle-card"
         onClick={() => props.favorites(props.itemData)}
-      >
+        >
+        <div className='card-background'></div>
         <h3 className="vehicle-name">
           {props.itemData.name}
         </h3>
@@ -47,10 +51,13 @@ const Card = props => {
 
   const planetCard = () => {
     return (
+
+
       <div
         className="card planet-card"
         onClick={() => props.favorites(props.itemData)}
-      >
+        >
+        <div className='card-background'></div>
         <h3 className="planet-name">
           {props.itemData.name}
         </h3>

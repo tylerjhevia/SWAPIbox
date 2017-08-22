@@ -1,6 +1,6 @@
 import React from "react";
 
-const Controls = ({ apiCall }) => {
+const Controls = ({ apiCall, toggleFav }) => {
   return (
     <div className="buttons">
       <div onClick={e => apiCall(e.target.innerHTML)} className="people-btn">
@@ -12,8 +12,8 @@ const Controls = ({ apiCall }) => {
       <div onClick={e => apiCall(e.target.innerHTML)} className="vehicle-btn">
         Vehicles
       </div>
-      <div onClick={e => apiCall(e.target.innerHTML)} className="favorite-btn">
-        Favorite
+      <div onClick={() => toggleFav()} className="favorite-btn">
+        Show Favorites
       </div>
     </div>
   );

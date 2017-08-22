@@ -1,11 +1,15 @@
 import React from "react";
-import Helper from "../Helper/Helper"
+import Helper from "../Helper/Helper";
 import "./Card.css";
 
 const Card = props => {
   const personCard = () => {
     return (
-      <div className="card person-card">
+
+      <div
+        className="card person-card"
+        onClick={() => props.favorites(props.itemData)}
+        >
         <div className='card-background'></div>
         <h3 className="card-name">
           {" "}{props.itemData.name}{" "}
@@ -23,7 +27,11 @@ const Card = props => {
 
   const vehicleCard = () => {
     return (
-      <div className="card vehicle-card">
+
+      <div
+        className="card vehicle-card"
+        onClick={() => props.favorites(props.itemData)}
+        >
         <div className='card-background'></div>
         <h3 className="vehicle-name">
           {props.itemData.name}
@@ -43,23 +51,26 @@ const Card = props => {
 
   const planetCard = () => {
     return (
-      <div className="card planet-card">
+
+
+      <div
+        className="card planet-card"
+        onClick={() => props.favorites(props.itemData)}
+        >
         <div className='card-background'></div>
-        <h3 className='planet-name'>
+        <h3 className="planet-name">
           {props.itemData.name}
         </h3>
-        <p className='terrain'>
+        <p className="terrain">
           {props.itemData.terrain}
         </p>
-        <p className='population'>
+        <p className="population">
           {props.itemData.population}
         </p>
-        <p className='climate'>
+        <p className="climate">
           {props.itemData.climate}
         </p>
-        <p className='residence'>
-          residence
-        </p>
+        <p className="residence">residence</p>
       </div>
     );
   };

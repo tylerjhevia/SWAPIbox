@@ -1,11 +1,12 @@
 import React from "react";
+import "./Card.css";
 
 const Card = props => {
   const personCard = () => {
     return (
       <div className="card person-card">
         <h3 className="card-name">
-          {" "}{props.itemData.person}{" "}
+          {" "}{props.itemData.name}{" "}
         </h3>
         <p className="species">
           {props.itemData.species}

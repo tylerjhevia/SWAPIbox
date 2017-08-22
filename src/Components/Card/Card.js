@@ -6,6 +6,7 @@ const Card = props => {
   const personCard = () => {
     return (
       <div className="card person-card">
+        <div className='card-background'></div>
         <h3 className="card-name">
           {" "}{props.itemData.name}{" "}
         </h3>
@@ -23,6 +24,7 @@ const Card = props => {
   const vehicleCard = () => {
     return (
       <div className="card vehicle-card">
+        <div className='card-background'></div>
         <h3 className="vehicle-name">
           {props.itemData.name}
         </h3>
@@ -42,6 +44,7 @@ const Card = props => {
   const planetCard = () => {
     return (
       <div className="card planet-card">
+        <div className='card-background'></div>
         <h3 className='planet-name'>
           {props.itemData.name}
         </h3>

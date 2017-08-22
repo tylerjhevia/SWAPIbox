@@ -1,6 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  color: #feda4a;
+}
+
+a   {
+  text-decoration: none;
+}
+
+
 body {
-  background-color: #fff8e8;
-  color: white;
   margin: 0;
   padding: 0;
   font-family: sans-serif;

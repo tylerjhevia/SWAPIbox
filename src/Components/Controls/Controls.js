@@ -3,8 +3,9 @@ import "./Controls.css";
 import dashboard from '../../assets/dashboard.png';
 import boba from '../../assets/boba.mp4';
 
-const Controls = ({ apiCall }) => {
+const Controls = ({ apiCall, toggleFav }) => {
   return (
+
     <div>
 
       <section className='controls-container'>
@@ -20,7 +21,7 @@ const Controls = ({ apiCall }) => {
           <div className='button' onClick={e => apiCall(e.target.innerHTML)}>
             <p className='button-title'>VEHICLES</p>
           </div>
-          <div className='button' onClick={e => apiCall(e.target.innerHTML)}>
+          <div onClick={() => toggleFav()} className="button">
             <p className='button-title'>FAVORITES</p>
           </div>
         </section>
@@ -36,6 +37,7 @@ const Controls = ({ apiCall }) => {
 
       </section>
      </div>
+
   );
 };
 

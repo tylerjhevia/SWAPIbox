@@ -31,11 +31,16 @@ class App extends Component {
     fetch(`https://swapi.co/api/${lowerCallType}/`)
       .then(data => data.json())
       .then(data => {
-        // if people api call then go into data and make homeworld api call in a .then
-        this.cleanApi(data.results);
+        if (lowerCallType === "people") {
+          this.fetchOtherData(data.results);
+        }
+
+        if (lowerCallType === "planets") {
+          this.fetchOtherData(data.results);
+        }
       })
       // .then(this.cleanApi(ourdatahere))
-      .catch(console.log("error"));
+      .catch(err => console.log(err));
   }
 
   cleanApi(dataArray) {
@@ -43,6 +48,36 @@ class App extends Component {
     this.setState({
       data: dataArray
     });
+  }
+
+  fetchOtherData(data) {
+    const originalData = data;
+    console.log("other data ", data);
+    const otherData = data.map(person => {
+      return fetch(person.homeworld).then(res => res.json());
+    });
+
+    Promise.all(otherData)
+      .then(res => {
+        return res.map((planet, i) => {
+          console.log("og data", originalData);
+          return Object.assign(
+            // otherData[i].homeworld = planet.name;
+            // otherData[i].population = planet.population;
+            // return otherData[i];
+
+            originalData[i],
+            { homeworld: planet.name },
+            { population: planet.population }
+            // {species: planet.species[0]}
+          );
+        });
+      })
+      .then(newData => {
+        this.setState({
+          data: newData
+        });
+      });
   }
 
   favoriteCard(card) {

@@ -22,10 +22,12 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
 
   return (
     <div className="outer-card-container">
-      <div className="card-container-spacer"></div>
+
       <section className="card-container">
         {itemCard}
+        <div className="card-container-spacer"></div>
       </section>
+      <div className="card-container-spacer"></div>
 
     </div>
   );

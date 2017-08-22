@@ -1,5 +1,10 @@
 import React from "react";
-import Helper from "../Helper/Helper";
+
+import Helper from "../Helper/Helper"
+import chewyAudio from '../../assets/Chewbacca roar.mp3';
+import haveYouAudio from '../../assets/I have you now.mp3';
+import strongAudio from '../../assets/Strong with the force.mp3';
+
 import "./Card.css";
 
 const Card = props => {
@@ -21,6 +26,9 @@ const Card = props => {
           {Helper(props.itemData.homeworld)}
         </p>
         <p className="population">1,000,000</p>
+        <audio className='background-audio' autoPlay>
+          <source src={ chewyAudio }></source>
+        </audio>
       </div>
     );
   };
@@ -45,6 +53,9 @@ const Card = props => {
         <p className="passenger-count">
           {props.itemData.passengers}
         </p>
+        <audio className='background-audio' autoPlay>
+          <source src={ haveYouAudio }></source>
+        </audio>
       </div>
     );
   };
@@ -70,7 +81,12 @@ const Card = props => {
         <p className="climate">
           {props.itemData.climate}
         </p>
-        <p className="residence">residence</p>
+        <p className='residence'>
+          residence
+        </p>
+        <audio className='background-audio' autoPlay>
+          <source src={ strongAudio }></source>
+        </audio>
       </div>
     );
   };

@@ -1,4 +1,5 @@
 import React from "react";
+import Helper from "../Helper/Helper"
 import "./Card.css";
 
 const Card = props => {
@@ -12,7 +13,7 @@ const Card = props => {
           {props.itemData.species}
         </p>
         <p className="homeworld">
-          {props.itemData.homeworld}
+          {Helper(props.itemData.homeworld)}
         </p>
         <p className="population">1,000,000</p>
       </div>
@@ -39,7 +40,25 @@ const Card = props => {
   };
 
   const planetCard = () => {
-    return <div className="card planet-card">Planetz</div>;
+    return (
+      <div className="card planet-card">
+        <h3 className='planet-name'>
+          {props.itemData.name}
+        </h3>
+        <p className='terrain'>
+          {props.itemData.terrain}
+        </p>
+        <p className='population'>
+          {props.itemData.population}
+        </p>
+        <p className='climate'>
+          {props.itemData.climate}
+        </p>
+        <p className='residence'>
+          residence
+        </p>
+      </div>
+    );
   };
 
   if (props.itemData.model) {
@@ -47,7 +66,7 @@ const Card = props => {
   }
 
   if (props.itemData.climate) {
-    return <p>Planetz</p>;
+    return planetCard();
   }
 
   if (props.itemData.species) {

@@ -29,7 +29,7 @@ class App extends Component {
       fetch(`https://swapi.co/api/${lowerCallType}/`)
         .then(data => data.json())
         .then(data => {
-          this.cleanApi(data.results);
+        this.cleanApi(data.results);
         })
         .catch(console.log("oops"));
     }
@@ -44,7 +44,7 @@ class App extends Component {
 
   render() {
     return (
-      
+
       <div>
         <Background />
         <Controls apiCall={this.getApi} />

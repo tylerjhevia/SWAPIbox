@@ -11,9 +11,12 @@ class App extends Component {
     super();
     this.state = {
       data: null,
-      favoriteCards: []
+      favoriteCards: [],
+      favClicked: false
     };
     this.getApi = this.getApi.bind(this);
+    this.favoriteCard = this.favoriteCard.bind(this);
+    this.toggleFav = this.showFavorites.bind(this);
     // const movie = getMovieText();
   }
 
@@ -25,14 +28,14 @@ class App extends Component {
 
   getApi(callType) {
     const lowerCallType = callType.toLowerCase();
-    if (callType !== "Favorite") {
-      fetch(`https://swapi.co/api/${lowerCallType}/`)
-        .then(data => data.json())
-        .then(data => {
+    fetch(`https://swapi.co/api/${lowerCallType}/`)
+      .then(data => data.json())
+      .then(data => {
+        // if people api call then go into data and make homeworld api call in a .then
         this.cleanApi(data.results);
-        })
-        .catch(console.log("oops"));
-    }
+      })
+      // .then(this.cleanApi(ourdatahere))
+      .catch(console.log("error"));
   }
 
   cleanApi(dataArray) {
@@ -42,16 +45,35 @@ class App extends Component {
     });
   }
 
+  favoriteCard(card) {
+    console.log(card);
+
+    const favorites = this.state.favoriteCards;
+    favorites.push(card);
+    this.setState({
+      favoriteCards: favorites
+    });
+  }
+
+  showFavorites() {
+    this.setState({
+      favClicked: !this.state.favClicked
+    });
+  }
+
   render() {
     return (
-
       <div>
         <Background />
-        <Controls apiCall={this.getApi} />
-        <CardDisplay itemData={this.state.data} />
+        <Controls apiCall={this.getApi} toggleFav={this.toggleFav} />
+        <CardDisplay
+          itemData={this.state.data}
+          favorites={this.favoriteCard}
+          favClicked={this.state.favClicked}
+          favCards={this.state.favoriteCards}
+        />
       </div>
     );
-
   }
 }
 

@@ -14,10 +14,10 @@ class App extends Component {
       favoriteCards: [],
       favClicked: false
     };
-    this.name = "tyler";
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
     this.toggleFav = this.showFavorites.bind(this);
+    this.clickedCard = this.clickedCard.bind(this);
     // const movie = getMovieText();
   }
 
@@ -106,8 +106,6 @@ class App extends Component {
   }
 
   favoriteCard(card) {
-    console.log(card);
-
     const favorites = this.state.favoriteCards;
     favorites.push(card);
     this.setState({
@@ -121,16 +119,25 @@ class App extends Component {
     });
   }
 
+  clickedCard(item) {
+    item.classList.toggle("clicked-card");
+  }
+
   render() {
     return (
       <div>
         <Background />
-        <Controls apiCall={this.getApi} toggleFav={this.toggleFav} />
+        <Controls
+          apiCall={this.getApi}
+          toggleFav={this.toggleFav}
+          clickBtn={this.clickedCard}
+        />
         <CardDisplay
           itemData={this.state.data}
           favorites={this.favoriteCard}
           favClicked={this.state.favClicked}
           favCards={this.state.favoriteCards}
+          clickCard={this.clickedCard}
         />
       </div>
     );

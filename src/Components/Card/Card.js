@@ -5,7 +5,6 @@ import strongAudio from "../../assets/Strong with the force.mp3";
 import personScan from "../../assets/person-scan.mp4";
 import vehiclesScan from "../../assets/vehicles-video.mp4";
 import planetScan from "../../assets/planet-scan.mp4";
-
 import "./Card.css";
 
 const Card = props => {
@@ -105,7 +104,7 @@ const Card = props => {
       </div>
     );
   };
-
+  // use switch case
   if (props.itemData.model) {
     return vehicleCard();
   }

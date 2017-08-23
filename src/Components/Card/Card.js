@@ -6,28 +6,42 @@ import personScan from "../../assets/person-scan.mp4";
 import vehiclesScan from "../../assets/vehicles-video.mp4";
 import planetScan from "../../assets/planet-scan.mp4";
 import "./Card.css";
+import { func, string } from "prop-types";
 
 const Card = props => {
+  const {
+    name,
+    species,
+    homeworld,
+    population,
+    vehicle_class,
+    passengers,
+    model,
+    terrain,
+    climate
+  } = props.itemData;
+
+  const { favorites, clickCard } = props;
   const personCard = () => {
     return (
       <div
         className="card person-card"
         onClick={e => {
-          props.favorites(props.itemData), props.clickCard(e.currentTarget);
+          favorites(props.itemData), clickCard(e.currentTarget);
         }}
       >
         <div className="card-background" />
         <h3 className="card-name">
-          {" "}{props.itemData.name}{" "}
+          {" "}{name}{" "}
         </h3>
         <p className="species">
-          {props.itemData.species}
+          {species}
         </p>
         <p className="homeworld">
-          {props.itemData.homeworld}
+          {homeworld}
         </p>
         <p className="population">
-          {props.itemData.population}
+          {population}
         </p>
         <div className="card-video-container person-video">
           <video
@@ -54,21 +68,21 @@ const Card = props => {
       <div
         className="card vehicle-card"
         onClick={e => {
-          props.favorites(props.itemData), props.clickCard(e.currentTarget);
+          favorites(props.itemData), clickCard(e.currentTarget);
         }}
       >
         <div className="card-background" />
         <h3 className="vehicle-name">
-          {props.itemData.name}
+          {name}
         </h3>
         <p className="model">
-          {props.itemData.model}
+          {model}
         </p>
         <p className="vehicle-class">
-          {props.itemData.vehicle_class}
+          {vehicle_class}
         </p>
         <p className="passenger-count">
-          {props.itemData.passengers}
+          {passengers}
         </p>
         <div className="card-video-container vehicle-video">
           <video
@@ -95,21 +109,21 @@ const Card = props => {
       <div
         className="card planet-card"
         onClick={e => {
-          props.favorites(props.itemData), props.clickCard(e.currentTarget);
+          favorites(props.itemData), clickCard(e.currentTarget);
         }}
       >
         <div className="card-background" />
         <h3 className="planet-name">
-          {props.itemData.name}
+          {name}
         </h3>
         <p className="terrain">
-          {props.itemData.terrain}
+          {terrain}
         </p>
         <p className="population">
-          {props.itemData.population}
+          {population}
         </p>
         <p className="climate">
-          {props.itemData.climate}
+          {climate}
         </p>
         <div className="card-video-container planet-video">
           <video
@@ -146,3 +160,17 @@ const Card = props => {
 };
 
 export default Card;
+
+Card.propTypes = {
+  favorites: func,
+  clickCard: func,
+  name: string,
+  species: string,
+  homeworld: string,
+  population: string,
+  vehicle_class: string,
+  passengers: string,
+  model: string,
+  terrain: string,
+  climate: string
+};

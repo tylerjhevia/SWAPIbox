@@ -5,8 +5,9 @@ import boba from "../../assets/boba.mp4";
 import dash2 from "../../assets/dashboard2.mp4";
 import digitalVideo from "../../assets/dash1.mp4";
 import r2 from "../../assets/r2.png";
+import { func } from "prop-types";
 
-const Controls = ({ apiCall, toggleFav, clickBtn }) => {
+const Controls = ({ apiCall, toggleFav }) => {
   return (
     <div>
       <section className="controls-container">
@@ -16,7 +17,7 @@ const Controls = ({ apiCall, toggleFav, clickBtn }) => {
           <div
             className="button"
             onClick={e => {
-              apiCall(e.target.innerHTML), clickBtn(e.currentTarget);
+              apiCall(e.target.innerHTML);
             }}
           >
             <p className="button-title">PEOPLE</p>
@@ -24,7 +25,7 @@ const Controls = ({ apiCall, toggleFav, clickBtn }) => {
           <div
             className="button"
             onClick={e => {
-              apiCall(e.target.innerHTML), clickBtn(e.currentTarget);
+              apiCall(e.target.innerHTML);
             }}
           >
             <p className="button-title">PLANETS</p>
@@ -32,7 +33,7 @@ const Controls = ({ apiCall, toggleFav, clickBtn }) => {
           <div
             className="button"
             onClick={e => {
-              apiCall(e.target.innerHTML), clickBtn(e.currentTarget);
+              apiCall(e.target.innerHTML);
             }}
           >
             <p className="button-title">VEHICLES</p>
@@ -105,3 +106,8 @@ const Controls = ({ apiCall, toggleFav, clickBtn }) => {
 };
 
 export default Controls;
+
+Controls.propTypes = {
+  apiCall: func,
+  toggleFav: func
+};

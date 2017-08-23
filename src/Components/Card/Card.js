@@ -2,6 +2,9 @@ import React from "react";
 import chewyAudio from "../../assets/Chewbacca roar.mp3";
 import haveYouAudio from "../../assets/I have you now.mp3";
 import strongAudio from "../../assets/Strong with the force.mp3";
+import personScan from "../../assets/person-scan.mp4";
+import vehiclesScan from "../../assets/vehicles-video.mp4";
+import planetScan from "../../assets/planet-scan.mp4";
 import "./Card.css";
 
 const Card = props => {
@@ -24,6 +27,12 @@ const Card = props => {
         <p className="population">
           {props.itemData.population}
         </p>
+        <div className='card-video-container'>
+          <video poster={ personScan } className='card-video' playsInline autoPlay muted loop>
+              <source src={ personScan } type='video/webm'></source>
+              <source src={ personScan } type='video/mp4'></source>
+          </video>
+        </div>
         <audio className="background-audio" autoPlay>
           <source src={chewyAudio} />
         </audio>
@@ -50,6 +59,12 @@ const Card = props => {
         <p className="passenger-count">
           {props.itemData.passengers}
         </p>
+        <div className='card-video-container'>
+          <video poster={ vehiclesScan } className='card-video' playsInline autoPlay muted loop>
+              <source src={ vehiclesScan } type='video/webm'></source>
+              <source src={ vehiclesScan } type='video/mp4'></source>
+          </video>
+        </div>
         <audio className="background-audio" autoPlay>
           <source src={haveYouAudio} />
         </audio>
@@ -76,6 +91,12 @@ const Card = props => {
         <p className="climate">
           {props.itemData.climate}
         </p>
+        <div className='card-video-container'>
+          <video poster={ planetScan } className='card-video' playsInline autoPlay muted loop>
+              <source src={ planetScan } type='video/webm'></source>
+              <source src={ planetScan } type='video/mp4'></source>
+          </video>
+        </div>
         <p className="residence">residence</p>
         <audio className="background-audio" autoPlay>
           <source src={strongAudio} />

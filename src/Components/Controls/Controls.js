@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Controls.css";
-
 import dashboard from '../../assets/dashboard.png';
 import boba from '../../assets/boba.mp4';
 import dash2 from '../../assets/dashboard2.mp4';
@@ -24,8 +23,8 @@ class Controls extends Component {
   }
 
   lightSpeedOn(callType) {
-    this.props.apiCall(callType)
-    setTimeout(() => { this.lightSpeedOff(); }, 5000);
+    setTimeout(() => {this.props.selectCategory(callType)}, 3800);
+    setTimeout(() => { this.lightSpeedOff(); }, 3500);
     this.setState({
       lightSpeed: 'light-speed-container',
       yodaSpeed: 'yoda-head yoda-light-speed',
@@ -79,7 +78,7 @@ class Controls extends Component {
             <div className='button' onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>VEHICLES</p>
             </div>
-            <div className="button" onClick={() => toggleFav()}>
+            <div className="button" onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>FAVORITES</p>
             </div>
           </section>

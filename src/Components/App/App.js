@@ -15,13 +15,15 @@ class App extends Component {
       vehicleData: null,
       filmData: null,
       favoriteCards: [],
-      favClicked: false
+      favClicked: false,
+      itemData: null
     };
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
-    this.toggleFav = this.showFavorites.bind(this);
     this.clickedCard = this.clickedCard.bind(this);
+    this.selectCategory = this.selectCategory.bind(this);
   }
+
 
   // componentDidMount() {
   //   this.setState({
@@ -121,7 +123,6 @@ class App extends Component {
   }
 
   fetchOtherData(data) {
-    console.log(data);
     // switch( true ) {
     //     case data[0].model: {
     //       this.setState({
@@ -179,14 +180,25 @@ class App extends Component {
     });
   }
 
-  showFavorites() {
-    this.setState({
-      favClicked: !this.state.favClicked
-    });
-  }
-
   clickedCard(item) {
     item.classList.toggle("clicked-card");
+  }
+
+  selectCategory(category) {
+    if (category === "PEOPLE") {
+      this.setState({ itemData: this.state.peopleData
+    })}
+    if (category === "PLANETS") {
+      this.setState({ itemData: this.state.planetData
+    })}
+    if (category === "VEHICLES") {
+      this.setState({ itemData: this.state.vehicleData      
+    })}
+    if (category === "FAVORITES") {
+      this.setState({
+        itemData: this.state.favoriteCards
+      })
+    }
   }
 
   render() {
@@ -194,13 +206,12 @@ class App extends Component {
       <div>
         <Background filmData={this.state.filmData} />
         <Controls
-          apiCall={this.getApi}
-          toggleFav={this.toggleFav}
+          selectCategory={this.selectCategory}  
           clickBtn={this.clickedCard}
           favoriteCards={this.state.favoriteCards}
         />
         <CardDisplay
-          itemData={this.state.data}
+          itemData={this.state.itemData}
           favorites={this.favoriteCard}
           favClicked={this.state.favClicked}
           favCards={this.state.favoriteCards}

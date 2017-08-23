@@ -12,7 +12,9 @@ const CardDisplay = ({
   let itemCard;
 
   if (favClicked) {
-    const mappedFavs = favCards.map((el, i) => <Card key={i} itemData={el} />);
+    const mappedFavs = favCards.map((el, i) =>
+      <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
+    );
     return (
       <div className="outer-card-container">
         <section className="card-container">

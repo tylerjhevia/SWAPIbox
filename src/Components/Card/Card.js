@@ -131,7 +131,7 @@ const Card = props => {
       </div>
     );
   };
-  // use switch case
+
   if (props.itemData.model) {
     return vehicleCard();
   }

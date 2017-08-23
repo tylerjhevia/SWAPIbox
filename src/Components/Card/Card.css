@@ -54,6 +54,7 @@
   height: 120px;
 }
 
+
 .r2 {
   position: absolute;
   top: -16%;
@@ -77,3 +78,4 @@
 .clicked-card {
   box-shadow: 0px 0px 30px rgb(254, 74, 74);
 }
+

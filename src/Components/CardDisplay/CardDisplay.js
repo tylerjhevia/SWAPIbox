@@ -10,6 +10,7 @@ const CardDisplay = ({
   favCards,
   clickCard
 }) => {
+
   let itemCard;
 
   if (favClicked) {
@@ -20,7 +21,6 @@ const CardDisplay = ({
       <div className="outer-card-container">
         <section className="card-container">
           {mappedFavs}
-          <div className="card-container-spacer" />
         </section>
         <div className="card-container-spacer" />
       </div>

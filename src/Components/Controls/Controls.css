@@ -1,6 +1,7 @@
 .controls-container {
   width: 100%;
   height: 30vh;
+  left: -1px;
   position: fixed;
   left: -1px;
   top: 70vh;
@@ -234,4 +235,182 @@
   height: 100%;
   box-shadow: inset 4px 1px 43px black;
   z-index: 1;
+}
+
+.yoda-box {
+  position: fixed;
+  top: 60%;
+  left: 27%;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  /* background: red; */
+}
+
+.yoda-head {
+  position: absolute;
+  top: -12px;
+  left: 0px;
+  width: 100px;
+  z-index: 1;
+  animation: yoda .5s infinite linear;
+}
+
+@keyframes yoda {
+    0% {
+    transform: rotate(4deg);
+  }
+    50% {
+    transform: rotate(-4deg);
+  }
+    100% {
+    transform: rotate(4deg);
+  }
+}
+
+.yoda-light-speed {
+  animation: yodaLightSpeed .2s infinite linear;
+}
+
+@keyframes yodaLightSpeed {
+    0% {
+    transform: rotate(12deg);
+  }
+    50% {
+    transform: rotate(-12deg);
+  }
+    100% {
+    transform: rotate(12deg);
+  }
+}
+
+.yoda {
+  position: absolute;
+  top: 26px;
+  left: 0px;
+  width: 100px;
+  /*height: 20px;*/
+}
+
+.upper-dash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  z-index: 100;
+   /*background: red;*/
+}
+
+.upper-dash {
+  width: 100%;
+  position: absolute;
+  top: -32px;
+}
+
+.dash-logo-container  {
+  width: 17%;
+  height: 50%;
+  background: #666666;
+  position: absolute;
+  top: 13%;
+  left: 41.5%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 35px black;
+  box-shadow: inset 0px 0px 100px black;
+}
+
+.solid-logo {
+  width: 76%;
+  position: absolute;
+  opacity: 1;
+  animation-name: solidLogoFade;
+  animation-duration: 10s;
+}
+
+@keyframes solidLogoFade {
+    0% {
+    opacity: 0;
+  }
+    90% {
+    opacity: 0;
+  }
+    100% {
+    opacity: 1;
+  }
+}
+
+.light-speed-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  overflow: hidden;
+  /*animation-name: lightSpeedFadeIn;
+  animation-duration: 2s;*/
+}
+
+@keyframes lightSpeedFadeIn {
+    0% {
+    opacity: 0;
+  }
+    100% {
+    opacity: 1;
+  }
+}
+
+.light-speed-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 1px;
+  top: 0px;
+  object-fit: cover;
+  animation-name: lightSpeedFadeIn;
+  animation-duration: 2s;
+}
+
+.r2 {
+  position: absolute;
+  top: -16%;
+  left: 66%;
+  width: 5%;
+  animation: r2Swing 3s infinite linear;
+}
+
+@keyframes r2Swing {
+    0% {
+    transform: rotate(4deg);
+  }
+    50% {
+    transform: rotate(-4deg);
+  }
+    100% {
+    transform: rotate(4deg);
+  }
+}
+
+
+.r2-light-speed {
+    animation: r2LightSpeed 1s infinite linear;
+}
+@keyframes r2LightSpeed {
+    0% {
+    transform: rotate(15deg);
+  }
+    50% {
+    transform: rotate(-10deg);
+  }
+    100% {
+    transform: rotate(15deg);
+  }
+}
+
+.hide {
+  display: none;
 }

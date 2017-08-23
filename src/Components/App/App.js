@@ -27,6 +27,7 @@ class App extends Component {
   }
 
   getApi(callType) {
+    console.log('fire')
     const lowerCallType = callType.toLowerCase();
     fetch(`https://swapi.co/api/${lowerCallType}/`)
       .then(data => data.json())

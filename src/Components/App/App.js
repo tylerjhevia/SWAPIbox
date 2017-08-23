@@ -18,7 +18,6 @@ class App extends Component {
     this.favoriteCard = this.favoriteCard.bind(this);
     this.toggleFav = this.showFavorites.bind(this);
     this.clickedCard = this.clickedCard.bind(this);
-    // const movie = getMovieText();
   }
 
   componentDidMount() {
@@ -32,7 +31,6 @@ class App extends Component {
     fetch(`https://swapi.co/api/${lowerCallType}/`)
       .then(data => data.json())
       .then(data => {
-        //change to switch case
         if (lowerCallType === "people") {
           this.fetchOtherData(data.results);
         }
@@ -45,7 +43,6 @@ class App extends Component {
           this.cleanApi(data.results);
         }
       })
-      // .then(this.cleanApi(ourdatahere))
       .catch(err => console.log("bad"));
   }
 
@@ -80,9 +77,7 @@ class App extends Component {
   fetchOtherData(data) {
     const originalData = data;
     if (data[0].terrain) {
-      // return this.setState({
       return this.getPlanetData(data);
-      // });
     }
     const otherData = data.map(person => {
       return fetch(person.homeworld).then(res => res.json());
@@ -106,10 +101,22 @@ class App extends Component {
   }
 
   favoriteCard(card) {
-    const favorites = this.state.favoriteCards;
-    favorites.push(card);
+    let cardName = card.name;
+    let favorites = this.state.favoriteCards;
+    let newFavorites = favorites.filter(element => {
+      return element.name !== card.name;
+    });
+
+    if (newFavorites.length < favorites.length) {
+      return this.setState({
+        favoriteCards: newFavorites
+      });
+    } else {
+      newFavorites.push(card);
+    }
+
     this.setState({
-      favoriteCards: favorites
+      favoriteCards: newFavorites
     });
   }
 

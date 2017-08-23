@@ -15,7 +15,7 @@ class App extends Component {
       vehicleData: null,
       filmData: null,
       favoriteCards: [],
-      favClicked: false,
+      favClicked: false
     };
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
@@ -50,16 +50,22 @@ class App extends Component {
   // }
 
   componentDidMount() {
-    const planets = this.getApi('planets')
-    const people = this.getApi('people')
-    const vehicles = this.getApi('vehicles')
-    console.log(planets)
+    const film = this.getApi(Helper());
+    const planets = this.getApi("planets");
+    const people = this.getApi("people");
+    const vehicles = this.getApi("vehicles");
   }
 
-  getApi(callType)  {
+  getApi(callType) {
     return fetch(`https://swapi.co/api/${callType}/`)
       .then(data => data.json())
-      .then(data => this.fetchOtherData(data.results))
+      .then(data => {
+        if (data.director) {
+          this.fetchOtherData(data);
+        } else {
+          this.fetchOtherData(data.results);
+        }
+      });
   }
 
   cleanApi(dataArray) {
@@ -81,14 +87,13 @@ class App extends Component {
         );
       })
     ).then(res => {
-        const readyData = res.map((el, i) =>
+      const readyData = res.map((el, i) =>
         Object.assign(data[i], { residents: el })
       );
       this.setState({
         planetData: readyData
-      })
+      });
     });
-    console.log(emptyPromises)
   }
 
   getPeopleData(data) {
@@ -107,34 +112,45 @@ class App extends Component {
         });
       })
       .then(newData => {
-        if(newData[0].height) {
+        if (newData[0].height) {
           this.setState({
             peopleData: newData
-          })
+          });
         }
       });
   }
 
   fetchOtherData(data) {
-// switch( true ) {
-//     case data[0].model: {
-//       this.setState({
-//         vehicleData: data
-//       })
-//     }
-//
-//     case data[0].terrain: {
-//       return this.getPlanetData(data);
-//     }
-//
-//     case data[0].species: {
-//       this.getPeopleData(data);
-//     }
-//   }
+    console.log(data);
+    // switch( true ) {
+    //     case data[0].model: {
+    //       this.setState({
+    //         vehicleData: data
+    //       })
+    //     }
+    //
+    //     case data[0].terrain: {
+    //       return this.getPlanetData(data);
+    //     }
+    //
+    //     case data[0].species: {
+    //       this.getPeopleData(data);
+    //     }
+    //   }
+    if (data.director) {
+      return this.setState({
+        filmData: [
+          data.opening_crawl,
+          data.title,
+          data.episode_id,
+          data.release_date
+        ]
+      });
+    }
     if (data[0].model) {
       return this.setState({
         vehicleData: data
-      })
+      });
     }
     if (data[0].terrain) {
       return this.getPlanetData(data);
@@ -170,15 +186,13 @@ class App extends Component {
   }
 
   clickedCard(item) {
-    console.log("item ", item);
-
     item.classList.toggle("clicked-card");
   }
 
   render() {
     return (
       <div>
-        <Background />
+        <Background filmData={this.state.filmData} />
         <Controls
           apiCall={this.getApi}
           toggleFav={this.toggleFav}

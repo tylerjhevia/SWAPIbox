@@ -120,6 +120,8 @@ class App extends Component {
   }
 
   clickedCard(item) {
+    console.log("item ", item);
+
     item.classList.toggle("clicked-card");
   }
 

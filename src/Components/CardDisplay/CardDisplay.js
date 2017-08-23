@@ -1,6 +1,7 @@
 import React from "react";
 import "./CardDisplay.css";
 import Card from "../Card/Card";
+import { object, array, func } from "prop-types";
 
 const CardDisplay = ({
   itemData,
@@ -42,3 +43,11 @@ const CardDisplay = ({
 };
 
 export default CardDisplay;
+
+CardDisplay.propTypes = {
+  itemData: object,
+  favorites: func,
+  favClicked: func,
+  favCards: array,
+  clickCard: func
+};

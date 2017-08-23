@@ -4,6 +4,7 @@ import dashboard from '../../assets/dashboard.png';
 import boba from '../../assets/boba.mp4';
 import dash2 from '../../assets/dashboard2.mp4';
 import digitalVideo from '../../assets/dash1.mp4';
+import r2 from '../../assets/r2.png';
 
 const Controls = ({ apiCall, toggleFav }) => {
   return (
@@ -51,6 +52,18 @@ const Controls = ({ apiCall, toggleFav }) => {
               <source src={ dash2 } type='video/mp4'></source>
           </video>
         </section>
+
+        <section className='favCount'>
+          <div className='video-overlay2'></div>
+          <p className='favorite-counter'>FAVORITE COUNETR</p>
+        </section>
+
+        <section className='counter'>
+          <div className='video-overlay3'></div>
+          <p className='counter-count'>10</p>
+        </section>
+
+        <img className='r2' src={ r2 }/>
 
 
 

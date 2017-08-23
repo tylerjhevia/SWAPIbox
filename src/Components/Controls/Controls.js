@@ -11,6 +11,7 @@ import yoda from '../../assets/yoda-body.png';
 import solidLogo from '../../assets/SWAPI-LOGO-SOLID.png';
 import topDashBoard from '../../assets/top-dashborad.png';
 import lightSpeed from '../../assets/light speed.mp4';
+import { func } from "prop-types"
 
 class Controls extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
+      videoControl: 'null'
     };
   }
 
@@ -29,6 +31,7 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container',
       yodaSpeed: 'yoda-head yoda-light-speed',
       r2Speed: 'r2 r2-light-speed',
+      videoControl: 'lightSpeed'
     })
   }
 
@@ -37,6 +40,7 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
+      videoControl: 'mute'
     })
   }
 
@@ -49,7 +53,7 @@ class Controls extends Component {
       <div>
 
         <section className={ this.state.lightSpeed }>
-          <video poster={ lightSpeed } className='light-speed-video' playsInline autoPlay muted loop >
+          <video poster={ lightSpeed } className='light-speed-video' autoPlay playsInline muted loop>
               <source src={ lightSpeed } type='video/webm'></source>
               <source src={ lightSpeed } type='video/mp4'></source>
           </video>
@@ -57,10 +61,10 @@ class Controls extends Component {
 
         <div className='upper-dash-container'>
           <img className='upper-dash' src={ topDashBoard }/>
-          <div className='dash-logo-container'>
-            <img className='solid-logo' src={ solidLogo }/>
-          </div>
+          <img className={ this.state.r2Speed } src={ r2 }/>
         </div>
+
+
 
         <div className='yoda-box'>
           <img className={ this.state.yodaSpeed } src={ yodaHead }/>
@@ -119,7 +123,7 @@ class Controls extends Component {
             <p className='counter-count'>10</p>
           </section>
 
-          <img className={ this.state.r2Speed } src={ r2 }/>
+
 
 
 

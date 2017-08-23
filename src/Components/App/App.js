@@ -120,8 +120,6 @@ class App extends Component {
   }
 
   clickedCard(item) {
-    console.log("item ", item);
-
     item.classList.toggle("clicked-card");
   }
 
@@ -129,7 +127,11 @@ class App extends Component {
     return (
       <div>
         <Background />
-        <Controls apiCall={this.getApi} toggleFav={this.toggleFav} />
+        <Controls
+          apiCall={this.getApi}
+          toggleFav={this.toggleFav}
+          clickBtn={this.clickedCard}
+        />
         <CardDisplay
           itemData={this.state.data}
           favorites={this.favoriteCard}

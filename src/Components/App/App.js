@@ -56,22 +56,25 @@ class App extends Component {
   }
 
   getPlanetData(data) {
-    let residentNames = data.map((elem, i) => {
-      const newArray = [];
-
-      const apis = elem.residents.map((url, i) => {
-        return fetch(url).then(res => res.json());
-      });
-
-      return Promise.all(apis).then(people => {
-        people.map((person, i) => {
-          newArray.push(person.name);
-          Object.assign(elem, { residents: newArray });
-        });
+    const ourData = data;
+    const emptyPromises = Promise.all(
+      data.map((planet, i) => {
+        return Promise.all(
+          planet.residents.map((url, i) => {
+            if (url) {
+              return fetch(url).then(res => res.json());
+            }
+          })
+        );
+      })
+    ).then(res => {
+      const newObj = res.map((el, i) =>
+        Object.assign(data[i], { residents: el })
+      );
+      this.setState({
+        data: newObj
       });
     });
-    let promises = Promise.all(residentNames).then(res => console.log(res));
-    console.log(promises);
   }
 
   fetchOtherData(data) {

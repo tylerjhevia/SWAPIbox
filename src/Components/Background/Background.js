@@ -6,7 +6,18 @@ import logoSolid from "../../assets/SWAPI-LOGO-SOLID.png";
 import PropTypes from "prop-types";
 import "./Background.css";
 
-const Background = () => {
+const Background = ({ filmData }) => {
+  let crawl;
+  let title;
+  let episode;
+  let date;
+  if (filmData) {
+    crawl = filmData[0];
+    title = filmData[1];
+    episode = filmData[2];
+    date = filmData[3];
+  }
+  console.log(crawl);
   return (
     <div>
       <section className="video-container">
@@ -33,26 +44,19 @@ const Background = () => {
         <section className="scroll-container">
           <div className="inner-scroll-box">
             <div className="title-box">
-              <p>Episode IV</p>
-              <h1>A New Hope</h1>
+              <p>
+                Episode: {episode}{" "}
+              </p>
+              <h1>
+                {title}
+              </h1>
             </div>
 
             <p>
-              It is a period of civil war. Rebel spaceships, striking from a
-              hidden base, have won their first victory against the evil
-              Galactic Empire.
+              {filmData ? crawl : "hello"}
             </p>
-
             <p>
-              During the battle, Rebel spies managed to steal secret plans to
-              the Empire’s ultimate weapon, the DEATH STAR, an armored space
-              station with enough power to destroy an entire planet.
-            </p>
-
-            <p>
-              Pursued by the Empire’s sinister agents, Princess Leia races home
-              aboard her starship, custodian of the stolen plans that can save
-              her people and restore freedom to the galaxy….
+              {date}
             </p>
           </div>
         </section>

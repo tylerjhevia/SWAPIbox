@@ -53,15 +53,16 @@ const Controls = ({ apiCall, toggleFav }) => {
           </video>
         </section>
 
-        <section className='favCount'>
-          <div className='video-overlay2'></div>
-          <p className='favorite-counter'>FAVORITE COUNETR</p>
-        </section>
-
-        <section className='counter'>
-          <div className='video-overlay3'></div>
-          <p className='counter-count'>10</p>
-        </section>
+        <section className='count-container'>
+          <section className='favCount'>
+            <div className='video-overlay2'></div>
+            <p className='favorite-counter'>FAVORITE COUNETR</p>
+          </section>
+          <section className='counter'>
+            <div className='video-overlay3'></div>
+            <p className='counter-count'>10</p>
+          </section>
+        </section>  
 
         <img className='r2' src={ r2 }/>
 

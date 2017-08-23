@@ -55,23 +55,3 @@
   height: 120px;
   /*position: absolute;*/
 }
-
-.r2 {
-  position: absolute;
-  top: -16%;
-  left: 66%;
-  width: 5%;
-  animation: r2Swing 3s infinite linear;
-}
-
-@keyframes r2Swing {
-    0% {
-    transform: rotate(4deg);
-  }
-    50% {
-    transform: rotate(-4deg);
-  }
-    100% {
-    transform: rotate(4deg);
-  }
-}

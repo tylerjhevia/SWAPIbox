@@ -2,6 +2,7 @@ import React from "react";
 import "./CardDisplay.css";
 import Card from "../Card/Card";
 
+
 const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
   let itemCard;
 
@@ -11,7 +12,6 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
       <div className="outer-card-container">
         <section className="card-container">
           {mappedFavs}
-          <div className="card-container-spacer" />
         </section>
         <div className="card-container-spacer" />
       </div>

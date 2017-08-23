@@ -2,7 +2,13 @@ import React from "react";
 import "./CardDisplay.css";
 import Card from "../Card/Card";
 
-const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
+const CardDisplay = ({
+  itemData,
+  favorites,
+  favClicked,
+  favCards,
+  clickCard
+}) => {
   let itemCard;
 
   if (favClicked) {
@@ -20,7 +26,7 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
 
   if (itemData) {
     itemCard = itemData.map((el, i) =>
-      <Card key={i} itemData={el} favorites={favorites} />
+      <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
     );
   }
 

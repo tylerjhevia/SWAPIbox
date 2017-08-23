@@ -12,7 +12,9 @@ const Card = props => {
     return (
       <div
         className="card person-card"
-        onClick={() => props.favorites(props.itemData)}
+        onClick={e => {
+          props.favorites(props.itemData), props.clickCard(e.currentTarget);
+        }}
       >
         <div className="card-background" />
         <h3 className="card-name">
@@ -27,10 +29,10 @@ const Card = props => {
         <p className="population">
           {props.itemData.population}
         </p>
-        <div className="card-video-container">
+        <div className="card-video-container person-video">
           <video
             poster={personScan}
-            className="card-video"
+            className="card-video person-video"
             playsInline
             autoPlay
             muted
@@ -51,7 +53,9 @@ const Card = props => {
     return (
       <div
         className="card vehicle-card"
-        onClick={() => props.favorites(props.itemData)}
+        onClick={e => {
+          props.favorites(props.itemData), props.clickCard(e.currentTarget);
+        }}
       >
         <div className="card-background" />
         <h3 className="vehicle-name">
@@ -66,10 +70,10 @@ const Card = props => {
         <p className="passenger-count">
           {props.itemData.passengers}
         </p>
-        <div className="card-video-container">
+        <div className="card-video-container vehicle-video">
           <video
             poster={vehiclesScan}
-            className="card-video"
+            className="card-video vehicle-video"
             playsInline
             autoPlay
             muted
@@ -90,7 +94,9 @@ const Card = props => {
     return (
       <div
         className="card planet-card"
-        onClick={() => props.favorites(props.itemData)}
+        onClick={e => {
+          props.favorites(props.itemData), props.clickCard(e.currentTarget);
+        }}
       >
         <div className="card-background" />
         <h3 className="planet-name">
@@ -105,10 +111,10 @@ const Card = props => {
         <p className="climate">
           {props.itemData.climate}
         </p>
-        <div className="card-video-container">
+        <div className="card-video-container planet-video">
           <video
             poster={planetScan}
-            className="card-video"
+            className="card-video planet-video"
             playsInline
             autoPlay
             muted

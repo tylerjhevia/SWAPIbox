@@ -164,6 +164,16 @@
   z-index: 1;
 }
 
+.favCount-container {
+  position: absolute;
+  width: 208px;
+  height: 20%;
+
+  top: 6%;
+  left: 34%;
+  z-index: 1;
+}
+
 .favCount {
   position: absolute;
   width: 153px;
@@ -173,7 +183,7 @@
   background: red;
   border: solid 2px black;
   top: 2%;
-  left: 34%;
+  left: 2%;
   border-radius: 5px;
   overflow: hidden;
   -webkit-transform: rotate(13deg);
@@ -207,7 +217,7 @@
   background: #666666;
   border: solid 4px black;
   top: -1px;
-  left: 44%;
+  left: 57%;
   border-radius: 100px;
   overflow: hidden;
   -webkit-transform: rotate(13deg);

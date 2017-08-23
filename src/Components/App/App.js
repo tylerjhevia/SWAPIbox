@@ -197,6 +197,7 @@ class App extends Component {
           apiCall={this.getApi}
           toggleFav={this.toggleFav}
           clickBtn={this.clickedCard}
+          favoriteCards={this.state.favoriteCards}
         />
         <CardDisplay
           itemData={this.state.data}

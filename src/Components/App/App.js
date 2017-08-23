@@ -14,11 +14,10 @@ class App extends Component {
       favoriteCards: [],
       favClicked: false
     };
-    this.name = "tyler";
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
     this.toggleFav = this.showFavorites.bind(this);
-    // const movie = getMovieText();
+    this.clickedCard = this.clickedCard.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +32,6 @@ class App extends Component {
     fetch(`https://swapi.co/api/${lowerCallType}/`)
       .then(data => data.json())
       .then(data => {
-        //change to switch case
         if (lowerCallType === "people") {
           this.fetchOtherData(data.results);
         }
@@ -46,7 +44,6 @@ class App extends Component {
           this.cleanApi(data.results);
         }
       })
-      // .then(this.cleanApi(ourdatahere))
       .catch(err => console.log("bad"));
   }
 
@@ -57,30 +54,31 @@ class App extends Component {
   }
 
   getPlanetData(data) {
-    let residentNames = data.map((elem, i) => {
-      const newArray = [];
-
-      const apis = elem.residents.map((url, i) => {
-        return fetch(url).then(res => res.json());
-      });
-
-      return Promise.all(apis).then(people => {
-        people.map((person, i) => {
-          newArray.push(person.name);
-          Object.assign(elem, { residents: newArray });
-        });
+    const ourData = data;
+    const emptyPromises = Promise.all(
+      data.map((planet, i) => {
+        return Promise.all(
+          planet.residents.map((url, i) => {
+            if (url) {
+              return fetch(url).then(res => res.json());
+            }
+          })
+        );
+      })
+    ).then(res => {
+      const newObj = res.map((el, i) =>
+        Object.assign(data[i], { residents: el })
+      );
+      this.setState({
+        data: newObj
       });
     });
-    let promises = Promise.all(residentNames).then(res => console.log(res));
-    console.log(promises);
   }
 
   fetchOtherData(data) {
     const originalData = data;
     if (data[0].terrain) {
-      // return this.setState({
       return this.getPlanetData(data);
-      // });
     }
     const otherData = data.map(person => {
       return fetch(person.homeworld).then(res => res.json());
@@ -104,12 +102,22 @@ class App extends Component {
   }
 
   favoriteCard(card) {
-    console.log(card);
+    let cardName = card.name;
+    let favorites = this.state.favoriteCards;
+    let newFavorites = favorites.filter(element => {
+      return element.name !== card.name;
+    });
 
-    const favorites = this.state.favoriteCards;
-    favorites.push(card);
+    if (newFavorites.length < favorites.length) {
+      return this.setState({
+        favoriteCards: newFavorites
+      });
+    } else {
+      newFavorites.push(card);
+    }
+
     this.setState({
-      favoriteCards: favorites
+      favoriteCards: newFavorites
     });
   }
 
@@ -119,16 +127,27 @@ class App extends Component {
     });
   }
 
+  clickedCard(item) {
+    console.log("item ", item);
+
+    item.classList.toggle("clicked-card");
+  }
+
   render() {
     return (
       <div>
         <Background />
-        <Controls apiCall={this.getApi} toggleFav={this.toggleFav} />
+        <Controls
+          apiCall={this.getApi}
+          toggleFav={this.toggleFav}
+          clickBtn={this.clickedCard}
+        />
         <CardDisplay
           itemData={this.state.data}
           favorites={this.favoriteCard}
           favClicked={this.state.favClicked}
           favCards={this.state.favoriteCards}
+          clickCard={this.clickedCard}
         />
       </div>
     );

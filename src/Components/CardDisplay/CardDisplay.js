@@ -1,13 +1,22 @@
 import React from "react";
 import "./CardDisplay.css";
 import Card from "../Card/Card";
+import { object, array, func } from "prop-types";
 
+const CardDisplay = ({
+  itemData,
+  favorites,
+  favClicked,
+  favCards,
+  clickCard
+}) => {
 
-const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
   let itemCard;
 
   if (favClicked) {
-    const mappedFavs = favCards.map((el, i) => <Card key={i} itemData={el} />);
+    const mappedFavs = favCards.map((el, i) =>
+      <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
+    );
     return (
       <div className="outer-card-container">
         <section className="card-container">
@@ -20,7 +29,7 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
 
   if (itemData) {
     itemCard = itemData.map((el, i) =>
-      <Card key={i} itemData={el} favorites={favorites} />
+      <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
     );
   }
 
@@ -36,3 +45,11 @@ const CardDisplay = ({ itemData, favorites, favClicked, favCards }) => {
 };
 
 export default CardDisplay;
+
+CardDisplay.propTypes = {
+  itemData: object,
+  favorites: func,
+  favClicked: func,
+  favCards: array,
+  clickCard: func
+};

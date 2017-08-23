@@ -66,21 +66,3 @@ const Background = () => {
 };
 
 export default Background;
-
-// fetchResidents(data) {
-//   // console.log(data)
-//   const specificResidentsData = data.map( (planets, i) => {
-//     const newArray = [];
-
-//     const specificResidents = planets.residents.map((link, i) => {
-//       return fetch(link)
-//       .then(res => res.json())
-//     })
-//     return Promise.all(specificResidents).then( people => {
-//       people.map((person, i) => {
-//         newArray.push(person.name)
-//         Object.assign(planets, {Residents: newArray})
-//       })
-//     })
-//   })
-// }

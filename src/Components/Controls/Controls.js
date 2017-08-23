@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Controls.css";
+
 import dashboard from '../../assets/dashboard.png';
 import boba from '../../assets/boba.mp4';
 import dash2 from '../../assets/dashboard2.mp4';
@@ -127,6 +128,12 @@ class Controls extends Component {
 
      );
    }
+
 };
 
 export default Controls;
+
+Controls.propTypes = {
+  apiCall: func,
+  toggleFav: func
+};

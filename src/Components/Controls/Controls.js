@@ -20,7 +20,6 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
-      videoControl: 'null'
     };
   }
 
@@ -31,7 +30,6 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container',
       yodaSpeed: 'yoda-head yoda-light-speed',
       r2Speed: 'r2 r2-light-speed',
-      videoControl: 'lightSpeed'
     })
   }
 
@@ -40,13 +38,12 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
-      videoControl: 'mute'
     })
   }
 
   render() {
 
-    const { apiCall, toggleFav } = this.props;
+    const { apiCall, toggleFav, clickBtn, favoriteCards } = this.props;
 
     return (
 
@@ -63,8 +60,6 @@ class Controls extends Component {
           <img className='upper-dash' src={ topDashBoard }/>
           <img className={ this.state.r2Speed } src={ r2 }/>
         </div>
-
-
 
         <div className='yoda-box'>
           <img className={ this.state.yodaSpeed } src={ yodaHead }/>
@@ -84,7 +79,7 @@ class Controls extends Component {
             <div className='button' onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>VEHICLES</p>
             </div>
-            <div onClick={() => toggleFav()} className="button">
+            <div className="button" onClick={() => toggleFav()}>
               <p className='button-title'>FAVORITES</p>
             </div>
           </section>
@@ -113,19 +108,16 @@ class Controls extends Component {
             </video>
           </section>
 
-          <section className='favCount'>
-            <div className='video-overlay2'></div>
-            <p className='favorite-counter'>FAVORITE COUNTER</p>
+          <section className='favCount-container'>
+            <section className='favCount'>
+              <div className='video-overlay2'></div>
+              <p className='favorite-counter'>FAVORITE COUNTER</p>
+            </section>
+            <section className='counter'>
+              <div className='video-overlay3'></div>
+              <p className='counter-count'>{this.props.favoriteCards.length}</p>
+            </section>
           </section>
-
-          <section className='counter'>
-            <div className='video-overlay3'></div>
-            <p className='counter-count'>10</p>
-          </section>
-
-
-
-
 
         </section>
        </div>

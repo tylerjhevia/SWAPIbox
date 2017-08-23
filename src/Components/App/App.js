@@ -10,9 +10,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: null,
+      planetData: null,
+      peopleData: null,
+      vehicleData: null,
+      filmData: null,
       favoriteCards: [],
-      favClicked: false
+      favClicked: false,
     };
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
@@ -20,31 +23,43 @@ class App extends Component {
     this.clickedCard = this.clickedCard.bind(this);
   }
 
+  // componentDidMount() {
+  //   this.setState({
+  //     data: this.cleanApi()
+  //   });
+  // }
+
+  // getApi(callType) {
+  //   const lowerCallType = callType.toLowerCase();
+  //   fetch(`https://swapi.co/api/${lowerCallType}/`)
+  //     .then(data => data.json())
+  //     .then(data => {
+  //       if (lowerCallType === "people") {
+  //         this.fetchOtherData(data.results);
+  //       }
+  //
+  //       if (lowerCallType === "planets") {
+  //         this.fetchOtherData(data.results);
+  //       }
+  //
+  //       if (lowerCallType === "vehicles") {
+  //         this.cleanApi(data.results);
+  //       }
+  //     })
+  //     .catch(err => console.log("bad"));
+  // }
+
   componentDidMount() {
-    this.setState({
-      data: this.cleanApi()
-    });
+    const planets = this.getApi('planets')
+    const people = this.getApi('people')
+    const vehicles = this.getApi('vehicles')
+    console.log(planets)
   }
 
-  getApi(callType) {
-    console.log('fire')
-    const lowerCallType = callType.toLowerCase();
-    fetch(`https://swapi.co/api/${lowerCallType}/`)
+  getApi(callType)  {
+    return fetch(`https://swapi.co/api/${callType}/`)
       .then(data => data.json())
-      .then(data => {
-        if (lowerCallType === "people") {
-          this.fetchOtherData(data.results);
-        }
-
-        if (lowerCallType === "planets") {
-          this.fetchOtherData(data.results);
-        }
-
-        if (lowerCallType === "vehicles") {
-          this.cleanApi(data.results);
-        }
-      })
-      .catch(err => console.log("bad"));
+      .then(data => this.fetchOtherData(data.results))
   }
 
   cleanApi(dataArray) {
@@ -66,20 +81,17 @@ class App extends Component {
         );
       })
     ).then(res => {
-      const newObj = res.map((el, i) =>
+        const readyData = res.map((el, i) =>
         Object.assign(data[i], { residents: el })
       );
       this.setState({
-        data: newObj
-      });
+        planetData: readyData
+      })
     });
+    console.log(emptyPromises)
   }
 
-  fetchOtherData(data) {
-    const originalData = data;
-    if (data[0].terrain) {
-      return this.getPlanetData(data);
-    }
+  getPeopleData(data) {
     const otherData = data.map(person => {
       return fetch(person.homeworld).then(res => res.json());
     });
@@ -88,17 +100,47 @@ class App extends Component {
       .then(res => {
         return res.map((planet, i) => {
           return Object.assign(
-            originalData[i],
+            data[i],
             { homeworld: planet.name },
             { population: planet.population }
           );
         });
       })
       .then(newData => {
-        this.setState({
-          data: newData
-        });
+        if(newData[0].height) {
+          this.setState({
+            peopleData: newData
+          })
+        }
       });
+  }
+
+  fetchOtherData(data) {
+// switch( true ) {
+//     case data[0].model: {
+//       this.setState({
+//         vehicleData: data
+//       })
+//     }
+//
+//     case data[0].terrain: {
+//       return this.getPlanetData(data);
+//     }
+//
+//     case data[0].species: {
+//       this.getPeopleData(data);
+//     }
+//   }
+    if (data[0].model) {
+      return this.setState({
+        vehicleData: data
+      })
+    }
+    if (data[0].terrain) {
+      return this.getPlanetData(data);
+    }
+
+    return this.getPeopleData(data);
   }
 
   favoriteCard(card) {

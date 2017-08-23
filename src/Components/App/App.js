@@ -14,6 +14,7 @@ class App extends Component {
       favoriteCards: [],
       favClicked: false
     };
+    this.name = "tyler";
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
     this.toggleFav = this.showFavorites.bind(this);
@@ -31,6 +32,7 @@ class App extends Component {
     fetch(`https://swapi.co/api/${lowerCallType}/`)
       .then(data => data.json())
       .then(data => {
+        //change to switch case
         if (lowerCallType === "people") {
           this.fetchOtherData(data.results);
         }
@@ -38,21 +40,47 @@ class App extends Component {
         if (lowerCallType === "planets") {
           this.fetchOtherData(data.results);
         }
+
+        if (lowerCallType === "vehicles") {
+          this.cleanApi(data.results);
+        }
       })
       // .then(this.cleanApi(ourdatahere))
-      .catch(err => console.log(err));
+      .catch(err => console.log("bad"));
   }
 
   cleanApi(dataArray) {
-    console.log(dataArray);
     this.setState({
       data: dataArray
     });
   }
 
+  getPlanetData(data) {
+    let residentNames = data.map((elem, i) => {
+      const newArray = [];
+
+      const apis = elem.residents.map((url, i) => {
+        return fetch(url).then(res => res.json());
+      });
+
+      return Promise.all(apis).then(people => {
+        people.map((person, i) => {
+          newArray.push(person.name);
+          Object.assign(elem, { residents: newArray });
+        });
+      });
+    });
+    let promises = Promise.all(residentNames).then(res => console.log(res));
+    console.log(promises);
+  }
+
   fetchOtherData(data) {
     const originalData = data;
-    console.log("other data ", data);
+    if (data[0].terrain) {
+      // return this.setState({
+      return this.getPlanetData(data);
+      // });
+    }
     const otherData = data.map(person => {
       return fetch(person.homeworld).then(res => res.json());
     });
@@ -60,16 +88,10 @@ class App extends Component {
     Promise.all(otherData)
       .then(res => {
         return res.map((planet, i) => {
-          console.log("og data", originalData);
           return Object.assign(
-            // otherData[i].homeworld = planet.name;
-            // otherData[i].population = planet.population;
-            // return otherData[i];
-
             originalData[i],
             { homeworld: planet.name },
             { population: planet.population }
-            // {species: planet.species[0]}
           );
         });
       })

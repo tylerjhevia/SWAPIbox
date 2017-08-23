@@ -2,7 +2,6 @@ import React from "react";
 import chewyAudio from "../../assets/Chewbacca roar.mp3";
 import haveYouAudio from "../../assets/I have you now.mp3";
 import strongAudio from "../../assets/Strong with the force.mp3";
-
 import "./Card.css";
 
 const Card = props => {
@@ -84,7 +83,7 @@ const Card = props => {
       </div>
     );
   };
-
+  // use switch case
   if (props.itemData.model) {
     return vehicleCard();
   }

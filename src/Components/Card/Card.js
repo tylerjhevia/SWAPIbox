@@ -27,10 +27,17 @@ const Card = props => {
         <p className="population">
           {props.itemData.population}
         </p>
-        <div className='card-video-container'>
-          <video poster={ personScan } className='card-video' playsInline autoPlay muted loop>
-              <source src={ personScan } type='video/webm'></source>
-              <source src={ personScan } type='video/mp4'></source>
+        <div className="card-video-container">
+          <video
+            poster={personScan}
+            className="card-video"
+            playsInline
+            autoPlay
+            muted
+            loop
+          >
+            <source src={personScan} type="video/webm" />
+            <source src={personScan} type="video/mp4" />
           </video>
         </div>
         <audio className="background-audio" autoPlay>
@@ -59,10 +66,17 @@ const Card = props => {
         <p className="passenger-count">
           {props.itemData.passengers}
         </p>
-        <div className='card-video-container'>
-          <video poster={ vehiclesScan } className='card-video' playsInline autoPlay muted loop>
-              <source src={ vehiclesScan } type='video/webm'></source>
-              <source src={ vehiclesScan } type='video/mp4'></source>
+        <div className="card-video-container">
+          <video
+            poster={vehiclesScan}
+            className="card-video"
+            playsInline
+            autoPlay
+            muted
+            loop
+          >
+            <source src={vehiclesScan} type="video/webm" />
+            <source src={vehiclesScan} type="video/mp4" />
           </video>
         </div>
         <audio className="background-audio" autoPlay>
@@ -91,10 +105,17 @@ const Card = props => {
         <p className="climate">
           {props.itemData.climate}
         </p>
-        <div className='card-video-container'>
-          <video poster={ planetScan } className='card-video' playsInline autoPlay muted loop>
-              <source src={ planetScan } type='video/webm'></source>
-              <source src={ planetScan } type='video/mp4'></source>
+        <div className="card-video-container">
+          <video
+            poster={planetScan}
+            className="card-video"
+            playsInline
+            autoPlay
+            muted
+            loop
+          >
+            <source src={planetScan} type="video/webm" />
+            <source src={planetScan} type="video/mp4" />
           </video>
         </div>
         <p className="residence">residence</p>

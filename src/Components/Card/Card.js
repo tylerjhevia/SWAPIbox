@@ -44,7 +44,7 @@ const Card = props => {
           {population}
         </p>
         <div className="card-video-container person-video">
-          <video
+          {/* <video
             poster={personScan}
             className="card-video person-video"
             playsInline
@@ -54,7 +54,7 @@ const Card = props => {
           >
             <source src={personScan} type="video/webm" />
             <source src={personScan} type="video/mp4" />
-          </video>
+          </video> */}
         </div>
         <audio className="background-audio" autoPlay>
           <source src={chewyAudio} />
@@ -85,7 +85,7 @@ const Card = props => {
           {passengers}
         </p>
         <div className="card-video-container vehicle-video">
-          <video
+          {/* <video
             poster={vehiclesScan}
             className="card-video vehicle-video"
             playsInline
@@ -95,7 +95,7 @@ const Card = props => {
           >
             <source src={vehiclesScan} type="video/webm" />
             <source src={vehiclesScan} type="video/mp4" />
-          </video>
+          </video> */}
         </div>
         <audio className="background-audio" autoPlay>
           <source src={haveYouAudio} />
@@ -126,7 +126,7 @@ const Card = props => {
           {climate}
         </p>
         <div className="card-video-container planet-video">
-          <video
+          {/* <video
             poster={planetScan}
             className="card-video planet-video"
             playsInline
@@ -136,7 +136,7 @@ const Card = props => {
           >
             <source src={planetScan} type="video/webm" />
             <source src={planetScan} type="video/mp4" />
-          </video>
+          </video> */}
         </div>
         <p className="residence">residence</p>
         <audio className="background-audio" autoPlay>

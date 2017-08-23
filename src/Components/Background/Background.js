@@ -17,7 +17,6 @@ const Background = ({ filmData }) => {
     episode = filmData[2];
     date = filmData[3];
   }
-  console.log(crawl);
   return (
     <div>
       <section className="video-container">

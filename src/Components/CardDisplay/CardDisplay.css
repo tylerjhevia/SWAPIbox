@@ -19,6 +19,41 @@
   overflow: scroll;
 }
 
+.api-fail {
+  background-image: url(https://idiotnerdgirl.files.wordpress.com/2016/01/tbccsiq1.gif?w=620);
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 90vh;
+}
+
+.api-fail-container {
+  width: 100%;
+  position: absolute;
+  top: 28%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.failed-api {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 52px;
+  color: red;
+  text-align: center;
+  opacity: 1;
+  animation: apiBlink .5s infinite linear;
+}
+
+@keyframes apiBlink {
+    0% {
+    opacity: 0;
+  }
+    100% {
+    opacity: 1;
+  }
+}
+
 .loading {
   background-image: url(https://media.giphy.com/media/RvuKrcA4fZHIA/giphy-downsized-large.gif);
   background-position: center;
@@ -28,4 +63,31 @@
   margin-top: 50px;
   width: 102%;
   height: 75vh;
+}
+
+.no-fav-container {
+  width: 100%;
+  position: absolute;
+  top: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-favorites {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 52px;
+  color: red;
+  text-align: center;
+  opacity: 1;
+  animation: favBlink .5s infinite linear;
+}
+
+@keyframes favBlink {
+    0% {
+    opacity: 0;
+  }
+    100% {
+    opacity: 1;
+  }
 }

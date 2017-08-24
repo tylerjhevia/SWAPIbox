@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import CardDisplay from "../CardDisplay/CardDisplay";
 import Controls from "../Controls/Controls";
-import LoadingPage from "../LoadingPage/LoadingPage";
 import Background from "../Background/Background";
 import Helper from "../Helper/Helper";
 
@@ -16,7 +15,8 @@ class App extends Component {
       filmData: null,
       favoriteCards: [],
       itemData: null,
-      favClicked: false
+      favClicked: false,
+      api: true,
     };
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
@@ -42,6 +42,14 @@ class App extends Component {
           this.fetchOtherData(data.results);
         }
       })
+
+
+      .catch( () => {
+        this.setState({
+          api: false
+        });
+      })
+
   }
 
   cleanApi(dataArray) {
@@ -79,24 +87,21 @@ class App extends Component {
 
     const speciesData = data.map(person => {
       return fetch(person.species).then(res => res.json());
-    })
+    });
 
     Promise.all(speciesData)
-    .then(res => {
-      return res.map((species, i) => {
-        return Object.assign(
-          data[i],
-          {species: species.name}
-        )
+      .then(res => {
+        return res.map((species, i) => {
+          return Object.assign(data[i], { species: species.name });
+        });
       })
-    })
-    .then(newData => {
-      if (newData[0].eye_colors) {
-        this.setState({
-          peopleData: newData
-        })
-      }
-    })
+      .then(newData => {
+        if (newData[0].eye_colors) {
+          this.setState({
+            peopleData: newData
+          });
+        }
+      });
 
     Promise.all(planetData)
       .then(res => {
@@ -104,7 +109,7 @@ class App extends Component {
           return Object.assign(
             data[i],
             { homeworld: planet.name },
-            { population: planet.population },
+            { population: planet.population }
           );
         });
       })
@@ -118,6 +123,9 @@ class App extends Component {
   }
 
   fetchOtherData(data) {
+    if (!data) {
+      return;
+    }
     if (data.director) {
       return this.setState({
         filmData: [
@@ -162,7 +170,7 @@ class App extends Component {
   favFunc() {
     this.setState({
       favClicked: true
-    })
+    });
   }
 
   clickedCard(item) {
@@ -171,26 +179,26 @@ class App extends Component {
 
   selectCategory(category) {
     if (category === "PEOPLE") {
-      this.setState({
+      return this.setState({
         favClicked: false,
-        itemData: this.state.peopleData
+        itemData: this.state.peopleData || null
       });
     }
     if (category === "PLANETS") {
       this.setState({
-        favClicked: false,        
+        favClicked: false,
         itemData: this.state.planetData
       });
     }
     if (category === "VEHICLES") {
       this.setState({
-        favClicked: false,        
+        favClicked: false,
         itemData: this.state.vehicleData
       });
     }
     if (category === "FAVORITES") {
       this.setState({
-       favClicked: true,
+        favClicked: true,
         itemData: this.state.favoriteCards
       });
     }
@@ -204,7 +212,7 @@ class App extends Component {
           selectCategory={this.selectCategory}
           clickBtn={this.clickedCard}
           favoriteCards={this.state.favoriteCards}
-          favFunc={this.favFunc}     
+          favFunc={this.favFunc}
         />
         <CardDisplay
           itemData={this.state.itemData}
@@ -212,7 +220,10 @@ class App extends Component {
           favCards={this.state.favoriteCards}
           favClicked={this.state.favClicked}
           clickCard={this.clickedCard}
+
           favClicked={this.state.favClicked}
+          api={this.state.api}
+
         />
       </div>
     );

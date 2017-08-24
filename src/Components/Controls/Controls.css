@@ -250,7 +250,7 @@
 
 .yoda-box {
   position: fixed;
-  top: 60%;
+  top: 62%;
   left: 27%;
   width: 100px;
   height: 100px;
@@ -431,9 +431,12 @@
 
 .beer-box {
   position: fixed;
-  top: 57%;
+  position: fixed;
+  top: 87%;
+  -webkit-transform: rotate(4deg);
+  -ms-transform: rotate(4deg);
   transform: rotate(4deg);
-  left: 86%;
+  left: 73%;
   width: 100px;
   height: 100px;
   z-index: 100;
@@ -443,7 +446,7 @@
   position: absolute;
   top: -12px;
   left: 0px;
-  width: 92px;
+  width: 109px;
   z-index: 1;
 }
 

@@ -107,7 +107,7 @@ const Card = props => {
         <div className="card-video-container planet-video">
           <img className='card-video' src={ planetScan }/>
         </div>
-        <p className="residence">residence</p>
+        <p className="residence">{ props.itemData.residents.map( (resident, i) => <p>{resident.name}</p>) }</p>
         <audio className="background-audio" autoPlay>
           <source src={strongAudio} />
         </audio>

@@ -44,7 +44,7 @@ const Background = ({ filmData }) => {
           <div className="inner-scroll-box">
             <div className="title-box">
               <p>
-                Episode: {episode}{" "}
+                {filmData ? "Episode: " : ""} {episode}
               </p>
               <h1>
                 {title}
@@ -52,7 +52,7 @@ const Background = ({ filmData }) => {
             </div>
 
             <p>
-              {filmData ? crawl : "hello"}
+              {filmData ? crawl : "API call failed"}
             </p>
             <p>
               {date}

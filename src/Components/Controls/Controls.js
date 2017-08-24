@@ -88,7 +88,7 @@ class Controls extends Component {
 
   render() {
 
-    const { apiCall, toggleFav, clickBtn, favoriteCards, favClicked } = this.props;
+    const { apiCall, clickBtn, favoriteCards, favClicked, } = this.props;
 
     return (
 
@@ -132,7 +132,7 @@ class Controls extends Component {
               <p className='button-title'>VEHICLES</p>
             </div>
 
-            <div className={ this.state.favoriteButton } onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
+            <div className={ this.state.favoriteButton } onClick={ e => this.lightSpeedOn(e.target.innerHTML)}>
               <p className='button-title'>FAVORITES</p>
             </div>
           </section>
@@ -183,5 +183,4 @@ export default Controls;
 
 Controls.propTypes = {
   apiCall: func,
-  toggleFav: func
 };

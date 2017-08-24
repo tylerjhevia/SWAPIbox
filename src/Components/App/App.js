@@ -16,7 +16,8 @@ class App extends Component {
       filmData: null,
       favoriteCards: [],
       itemData: null,
-      favClicked: false
+      favClicked: false,
+      api: true,
     };
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
@@ -41,7 +42,12 @@ class App extends Component {
         } else {
           this.fetchOtherData(data.results);
         }
-      });
+      })
+      .catch( () => {
+        this.setState({
+          api: false
+        });
+      })
   }
 
   cleanApi(dataArray) {
@@ -178,13 +184,13 @@ class App extends Component {
     }
     if (category === "PLANETS") {
       this.setState({
-        favClicked: false,        
+        favClicked: false,
         itemData: this.state.planetData
       });
     }
     if (category === "VEHICLES") {
       this.setState({
-        favClicked: false,        
+        favClicked: false,
         itemData: this.state.vehicleData
       });
     }
@@ -204,7 +210,7 @@ class App extends Component {
           selectCategory={this.selectCategory}
           clickBtn={this.clickedCard}
           favoriteCards={this.state.favoriteCards}
-          favFunc={this.favFunc}     
+          favFunc={this.favFunc}
         />
         <CardDisplay
           itemData={this.state.itemData}
@@ -213,6 +219,7 @@ class App extends Component {
           favClicked={this.state.favClicked}
           clickCard={this.clickedCard}
           favClicked={this.state.favClicked}
+          api={this.state.api}
         />
       </div>
     );

@@ -180,7 +180,7 @@ class App extends Component {
     if (category === "PEOPLE") {
       this.setState({
         favClicked: false,
-        itemData: this.state.peopleData || null
+        itemData: this.state.peopleData
       });
     }
     if (category === "PLANETS") {

@@ -16,7 +16,7 @@ class App extends Component {
       favoriteCards: [],
       itemData: null,
       favClicked: false,
-      api: true,
+      api: true
     };
     this.getApi = this.getApi.bind(this);
     this.favoriteCard = this.favoriteCard.bind(this);
@@ -42,14 +42,11 @@ class App extends Component {
           this.fetchOtherData(data.results);
         }
       })
-
-
-      .catch( () => {
+      .catch(() => {
         this.setState({
           api: false
         });
-      })
-
+      });
   }
 
   cleanApi(dataArray) {
@@ -124,7 +121,9 @@ class App extends Component {
 
   fetchOtherData(data) {
     if (!data) {
-      return;
+      return this.setState({
+        api: false
+      });
     }
     if (data.director) {
       return this.setState({
@@ -179,7 +178,7 @@ class App extends Component {
 
   selectCategory(category) {
     if (category === "PEOPLE") {
-      return this.setState({
+      this.setState({
         favClicked: false,
         itemData: this.state.peopleData || null
       });
@@ -220,10 +219,8 @@ class App extends Component {
           favCards={this.state.favoriteCards}
           favClicked={this.state.favClicked}
           clickCard={this.clickedCard}
-
           favClicked={this.state.favClicked}
           api={this.state.api}
-
         />
       </div>
     );

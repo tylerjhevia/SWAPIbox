@@ -41,7 +41,7 @@ class App extends Component {
         } else {
           this.fetchOtherData(data.results);
         }
-      });
+      })
   }
 
   cleanApi(dataArray) {

@@ -39,7 +39,11 @@ const CardDisplay = ({ itemData, favorites, favCards, clickCard, favClicked }) =
 export default CardDisplay;
 
 CardDisplay.propTypes = {
-  itemData: object,
+  // itemData: PropTypes.oneOfType([
+  //   object,
+  //   array
+  // ]),
+  itemData: array,
   favorites: func,
   favCards: array,
   clickCard: func

@@ -2,3 +2,14 @@
   box-sizing: border-box;
   color: #feda4a;
 }
+
+.error {
+  background-image: url(https://media.giphy.com/media/10juQ7fAaQjuHS/giphy.gif);
+  background-position: center;
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
+  margin-left: -7px;
+  margin-top: 50px;
+  width: 102%;
+  height: 75vh;
+}

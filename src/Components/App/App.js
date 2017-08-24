@@ -42,11 +42,14 @@ class App extends Component {
           this.fetchOtherData(data.results);
         }
       })
+
+
       .catch( () => {
         this.setState({
           api: false
         });
       })
+
   }
 
   cleanApi(dataArray) {

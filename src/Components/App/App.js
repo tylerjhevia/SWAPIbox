@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import CardDisplay from "../CardDisplay/CardDisplay";
 import Controls from "../Controls/Controls";
-import LoadingPage from "../LoadingPage/LoadingPage";
 import Background from "../Background/Background";
 import Helper from "../Helper/Helper";
 
@@ -85,24 +84,21 @@ class App extends Component {
 
     const speciesData = data.map(person => {
       return fetch(person.species).then(res => res.json());
-    })
+    });
 
     Promise.all(speciesData)
-    .then(res => {
-      return res.map((species, i) => {
-        return Object.assign(
-          data[i],
-          {species: species.name}
-        )
+      .then(res => {
+        return res.map((species, i) => {
+          return Object.assign(data[i], { species: species.name });
+        });
       })
-    })
-    .then(newData => {
-      if (newData[0].eye_colors) {
-        this.setState({
-          peopleData: newData
-        })
-      }
-    })
+      .then(newData => {
+        if (newData[0].eye_colors) {
+          this.setState({
+            peopleData: newData
+          });
+        }
+      });
 
     Promise.all(planetData)
       .then(res => {
@@ -110,7 +106,7 @@ class App extends Component {
           return Object.assign(
             data[i],
             { homeworld: planet.name },
-            { population: planet.population },
+            { population: planet.population }
           );
         });
       })
@@ -124,6 +120,9 @@ class App extends Component {
   }
 
   fetchOtherData(data) {
+    if (!data) {
+      return;
+    }
     if (data.director) {
       return this.setState({
         filmData: [
@@ -168,7 +167,7 @@ class App extends Component {
   favFunc() {
     this.setState({
       favClicked: true
-    })
+    });
   }
 
   clickedCard(item) {
@@ -177,9 +176,9 @@ class App extends Component {
 
   selectCategory(category) {
     if (category === "PEOPLE") {
-      this.setState({
+      return this.setState({
         favClicked: false,
-        itemData: this.state.peopleData
+        itemData: this.state.peopleData || null
       });
     }
     if (category === "PLANETS") {
@@ -196,7 +195,7 @@ class App extends Component {
     }
     if (category === "FAVORITES") {
       this.setState({
-       favClicked: true,
+        favClicked: true,
         itemData: this.state.favoriteCards
       });
     }
@@ -218,8 +217,10 @@ class App extends Component {
           favCards={this.state.favoriteCards}
           favClicked={this.state.favClicked}
           clickCard={this.clickedCard}
+
           favClicked={this.state.favClicked}
           api={this.state.api}
+
         />
       </div>
     );

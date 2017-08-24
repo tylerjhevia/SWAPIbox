@@ -78,3 +78,14 @@
 .displayed {
   display: none;
 }
+
+.residents-label {
+  height: 20px;
+}
+
+.residence {
+  margin-top: -10px;
+  width: 280px;
+  height: 30px;
+  overflow: scroll;
+}

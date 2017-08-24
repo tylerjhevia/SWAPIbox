@@ -10,6 +10,8 @@ import yoda from '../../assets/yoda-body.png';
 import solidLogo from '../../assets/SWAPI-LOGO-SOLID.png';
 import topDashBoard from '../../assets/top-dashborad.png';
 import lightSpeed from '../../assets/light speed.mp4';
+import r2d2 from '../../assets/Excited R2D2.mp3';
+import beer from '../../assets/rainier.png';
 import { func } from "prop-types"
 
 class Controls extends Component {
@@ -19,16 +21,23 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
+      peopleButton: 'button',
+      planetButton: 'button',
+      vehicleButton: 'button',
+      favoriteButton: 'button',
+      beer: 'beer'
     };
   }
 
   lightSpeedOn(callType) {
-    setTimeout(() => {this.props.selectCategory(callType)}, 3800);
-    setTimeout(() => { this.lightSpeedOff(); }, 3500);
+    this.buttonCheck(callType);
+    setTimeout(() => {this.props.selectCategory(callType)}, 3700);
+    setTimeout(() => { this.lightSpeedOff(); }, 4200);
     this.setState({
       lightSpeed: 'light-speed-container',
       yodaSpeed: 'yoda-head yoda-light-speed',
       r2Speed: 'r2 r2-light-speed',
+      beer: 'beer beer-light-speed'
     })
   }
 
@@ -37,12 +46,49 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
+      beer: 'beer'
     })
   }
 
+  buttonCheck(callType) {
+    if(callType === "PEOPLE") {
+      this.setState({
+        peopleButton: ' button button-clicked',
+        planetButton: 'button',
+        vehicleButton: 'button',
+        favoriteButton: 'button'
+      })
+    }
+    if(callType === "PLANETS") {
+      this.setState({
+        peopleButton: 'button',
+        planetButton: ' button button-clicked',
+        vehicleButton: 'button',
+        favoriteButton: 'button'
+      })
+    }
+    if(callType === "VEHICLES") {
+      this.setState({
+        peopleButton: 'button',
+        planetButton: 'button',
+        vehicleButton: 'button button-clicked',
+        favoriteButton: 'button'
+      })
+    }
+    if(callType === "FAVORITES") {
+      this.setState({
+        peopleButton: 'button',
+        planetButton: 'button',
+        vehicleButton: 'button',
+        favoriteButton: 'button button-clicked'
+      })
+    }
+  }
+
+
   render() {
 
-    const { apiCall, toggleFav, clickBtn, favoriteCards } = this.props;
+    const { apiCall, toggleFav, clickBtn, favoriteCards, favClicked } = this.props;
 
     return (
 
@@ -53,6 +99,9 @@ class Controls extends Component {
               <source src={ lightSpeed } type='video/webm'></source>
               <source src={ lightSpeed } type='video/mp4'></source>
           </video>
+          <audio className="r2-audio hide" autoPlay >
+            <source src={ r2d2 } />
+          </audio>
         </section>
 
         <div className='upper-dash-container'>
@@ -65,20 +114,25 @@ class Controls extends Component {
           <img className='yoda' src={ yoda }/>
         </div>
 
+        <div className='beer-box'>
+          <img className={ this.state.beer } src={ beer }/>
+        </div>
+
         <section className='controls-container'>
           <img className='dashboard' src={ dashboard } />
 
           <section className="button-container">
-            <div className='button' onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
+            <div className={ this.state.peopleButton } onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>PEOPLE</p>
             </div>
-            <div className='button' onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
+            <div className={ this.state.planetButton } onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>PLANETS</p>
             </div>
-            <div className='button' onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
+            <div className={ this.state.vehicleButton} onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>VEHICLES</p>
             </div>
-            <div className="button" onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
+
+            <div className={ this.state.favoriteButton } onClick={ e => this.lightSpeedOn(e.target.innerHTML) }>
               <p className='button-title'>FAVORITES</p>
             </div>
           </section>
@@ -117,7 +171,6 @@ class Controls extends Component {
               <p className='counter-count'>{this.props.favoriteCards.length}</p>
             </section>
           </section>
-
         </section>
        </div>
 

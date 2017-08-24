@@ -5,12 +5,14 @@ import { object, array, func } from "prop-types";
 
 const CardDisplay = ({ itemData, favorites, favCards, clickCard }) => {
   let itemCard;
+
   console.log(favCards);
 
   /*if (favClicked) {
     const mappedFavs = favCards.map((el, i) =>
       <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
     );
+
     return (
       <div className="outer-card-container">
         <section className="card-container">
@@ -20,6 +22,8 @@ const CardDisplay = ({ itemData, favorites, favCards, clickCard }) => {
       </div>
     );
   }*/
+
+  
 
   if (itemData) {
     itemCard = itemData.map((el, i) =>

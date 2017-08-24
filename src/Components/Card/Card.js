@@ -2,9 +2,9 @@ import React from "react";
 import chewyAudio from "../../assets/Chewbacca roar.mp3";
 import haveYouAudio from "../../assets/I have you now.mp3";
 import strongAudio from "../../assets/Strong with the force.mp3";
-import personScan from "../../assets/person-scan.mp4";
-import vehiclesScan from "../../assets/vehicles-video.mp4";
-import planetScan from "../../assets/planet-scan.mp4";
+import personScan from "../../assets/person-scan.gif";
+import shipScan from "../../assets/ship-scan.gif";
+import planetScan from "../../assets/planet-scan.gif";
 import "./Card.css";
 import { func, string } from "prop-types";
 
@@ -44,17 +44,7 @@ const Card = props => {
           Population: {population}
         </p>
         <div className="card-video-container person-video">
-          {/* <video
-            poster={personScan}
-            className="card-video person-video"
-            playsInline
-            autoPlay
-            muted
-            loop
-          >
-            <source src={personScan} type="video/webm" />
-            <source src={personScan} type="video/mp4" />
-          </video> */}
+          <img className='card-video' src={ personScan }/>
         </div>
         <audio className="background-audio" autoPlay>
           <source src={chewyAudio} />
@@ -85,17 +75,7 @@ const Card = props => {
           Passengers: {passengers}
         </p>
         <div className="card-video-container vehicle-video">
-          {/* <video
-            poster={vehiclesScan}
-            className="card-video vehicle-video"
-            playsInline
-            autoPlay
-            muted
-            loop
-          >
-            <source src={vehiclesScan} type="video/webm" />
-            <source src={vehiclesScan} type="video/mp4" />
-          </video> */}
+          <img className='card-video' src={ shipScan }/>
         </div>
         <audio className="background-audio" autoPlay>
           <source src={haveYouAudio} />
@@ -126,17 +106,7 @@ const Card = props => {
           Climate: {climate}
         </p>
         <div className="card-video-container planet-video">
-          {/* <video
-            poster={planetScan}
-            className="card-video planet-video"
-            playsInline
-            autoPlay
-            muted
-            loop
-          >
-            <source src={planetScan} type="video/webm" />
-            <source src={planetScan} type="video/mp4" />
-          </video> */}
+          <img className='card-video' src={ planetScan }/>
         </div>
         <p className="residence">residence</p>
         <audio className="background-audio" autoPlay>

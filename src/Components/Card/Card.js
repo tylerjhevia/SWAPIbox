@@ -20,12 +20,11 @@ const Card = props => {
     terrain,
     climate
   } = props.itemData;
-
-  const { favorites, clickCard } = props;
+  const { favorites, clickCard, className } = props;
   const personCard = () => {
     return (
       <div
-        className="card person-card"
+        className={className}
         onClick={e => {
           favorites(props.itemData), clickCard(e.currentTarget);
         }}
@@ -56,7 +55,7 @@ const Card = props => {
   const vehicleCard = () => {
     return (
       <div
-        className="card vehicle-card"
+        className={className}
         onClick={e => {
           favorites(props.itemData), clickCard(e.currentTarget);
         }}
@@ -87,7 +86,7 @@ const Card = props => {
   const planetCard = () => {
     return (
       <div
-        className="card planet-card"
+        className={className}
         onClick={e => {
           favorites(props.itemData), clickCard(e.currentTarget);
         }}

@@ -15,7 +15,6 @@ class App extends Component {
       vehicleData: null,
       filmData: null,
       favoriteCards: [],
-      favClicked: false,
       itemData: null
     };
     this.getApi = this.getApi.bind(this);
@@ -148,16 +147,15 @@ class App extends Component {
     });
 
     if (newFavorites.length < favorites.length) {
-      return this.setState({
+      this.setState({
         favoriteCards: newFavorites
       });
     } else {
       newFavorites.push(card);
+      this.setState({
+        favoriteCards: newFavorites
+      });
     }
-
-    this.setState({
-      favoriteCards: newFavorites
-    });
   }
 
   favFunc() {
@@ -172,18 +170,24 @@ class App extends Component {
 
   selectCategory(category) {
     if (category === "PEOPLE") {
-      this.setState({ itemData: this.state.peopleData
-    })}
+      this.setState({
+        itemData: this.state.peopleData
+      });
+    }
     if (category === "PLANETS") {
-      this.setState({ itemData: this.state.planetData
-    })}
+      this.setState({
+        itemData: this.state.planetData
+      });
+    }
     if (category === "VEHICLES") {
-      this.setState({ itemData: this.state.vehicleData      
-    })}
+      this.setState({
+        itemData: this.state.vehicleData
+      });
+    }
     if (category === "FAVORITES") {
       this.setState({
         itemData: this.state.favoriteCards
-      })
+      });
     }
   }
 
@@ -192,7 +196,7 @@ class App extends Component {
       <div>
         <Background filmData={this.state.filmData} />
         <Controls
-          selectCategory={this.selectCategory}  
+          selectCategory={this.selectCategory}
           clickBtn={this.clickedCard}
           favoriteCards={this.state.favoriteCards}
           favFunc={this.favFunc}          

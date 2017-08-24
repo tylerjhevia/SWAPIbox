@@ -3,22 +3,15 @@ import "./CardDisplay.css";
 import Card from "../Card/Card";
 import { object, array, func } from "prop-types";
 
-const CardDisplay = ({
-  itemData,
-  favorites,
-  favClicked,
-  favCards,
-  clickCard
-}) => {
-
+const CardDisplay = ({ itemData, favorites, favCards, clickCard }) => {
   let itemCard;
-  console.log('favclicked', favClicked)
 
-  if (favClicked) {
-    const mappedFavs = favCards.map((el, i) => {
-      console.log('fav cards', favCards)
-    return  <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
-    });
+  console.log(favCards);
+
+  /*if (favClicked) {
+    const mappedFavs = favCards.map((el, i) =>
+      <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
+    );
 
     return (
       <div className="outer-card-container">
@@ -28,13 +21,19 @@ const CardDisplay = ({
         <div className="card-container-spacer" />
       </div>
     );
-  }
+  }*/
 
   
 
   if (itemData) {
     itemCard = itemData.map((el, i) =>
-      <Card key={i} itemData={el} favorites={favorites} clickCard={clickCard} />
+      <Card
+        key={i}
+        itemData={el}
+        favorites={favorites}
+        clickCard={clickCard}
+        className={favCards.includes(el) ? "card clicked-card" : "card"}
+      />
     );
   }
 

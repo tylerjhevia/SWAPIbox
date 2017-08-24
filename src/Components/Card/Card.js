@@ -43,7 +43,7 @@ const Card = props => {
           Population: {population}
         </p>
         <div className="card-video-container person-video">
-          <img className='card-video' src={ personScan }/>
+          <img className="card-video" src={personScan} />
         </div>
         <audio className="background-audio" autoPlay>
           <source src={chewyAudio} />
@@ -74,7 +74,7 @@ const Card = props => {
           Passengers: {passengers}
         </p>
         <div className="card-video-container vehicle-video">
-          <img className='card-video' src={ shipScan }/>
+          <img className="card-video" src={shipScan} />
         </div>
         <audio className="background-audio" autoPlay>
           <source src={haveYouAudio} />
@@ -105,9 +105,16 @@ const Card = props => {
           Climate: {climate}
         </p>
         <div className="card-video-container planet-video">
-          <img className='card-video' src={ planetScan }/>
+          <img className="card-video" src={planetScan} />
         </div>
-        <p className="residence">{ props.itemData.residents.map( (resident, i) => <p>{resident.name}</p>) }</p>
+        <p className="residents-label">Residents</p>
+        <p className="residence">
+          {props.itemData.residents.map((resident, i) =>
+            <p>
+              {resident.name}
+            </p>
+          )}
+        </p>
         <audio className="background-audio" autoPlay>
           <source src={strongAudio} />
         </audio>

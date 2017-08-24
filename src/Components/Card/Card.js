@@ -32,16 +32,16 @@ const Card = props => {
       >
         <div className="card-background" />
         <h3 className="card-name">
-          {" "}{name}{" "}
+          {name}
         </h3>
         <p className="species">
-          {species}
+          Species: {species}
         </p>
         <p className="homeworld">
-          {homeworld}
+          Home Planet: {homeworld}
         </p>
         <p className="population">
-          {population}
+          Population: {population}
         </p>
         <div className="card-video-container person-video">
           {/* <video
@@ -76,13 +76,13 @@ const Card = props => {
           {name}
         </h3>
         <p className="model">
-          {model}
+          Model: {model}
         </p>
         <p className="vehicle-class">
-          {vehicle_class}
+          Class: {vehicle_class}
         </p>
         <p className="passenger-count">
-          {passengers}
+          Passengers: {passengers}
         </p>
         <div className="card-video-container vehicle-video">
           {/* <video
@@ -117,13 +117,13 @@ const Card = props => {
           {name}
         </h3>
         <p className="terrain">
-          {terrain}
+          Terrain: {terrain}
         </p>
         <p className="population">
-          {population}
+          Population: {population}
         </p>
         <p className="climate">
-          {climate}
+          Climate: {climate}
         </p>
         <div className="card-video-container planet-video">
           {/* <video

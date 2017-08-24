@@ -22,34 +22,8 @@ class App extends Component {
     this.favoriteCard = this.favoriteCard.bind(this);
     this.clickedCard = this.clickedCard.bind(this);
     this.selectCategory = this.selectCategory.bind(this);
+    this.favFunc = this.favFunc.bind(this);
   }
-
-
-  // componentDidMount() {
-  //   this.setState({
-  //     data: this.cleanApi()
-  //   });
-  // }
-
-  // getApi(callType) {
-  //   const lowerCallType = callType.toLowerCase();
-  //   fetch(`https://swapi.co/api/${lowerCallType}/`)
-  //     .then(data => data.json())
-  //     .then(data => {
-  //       if (lowerCallType === "people") {
-  //         this.fetchOtherData(data.results);
-  //       }
-  //
-  //       if (lowerCallType === "planets") {
-  //         this.fetchOtherData(data.results);
-  //       }
-  //
-  //       if (lowerCallType === "vehicles") {
-  //         this.cleanApi(data.results);
-  //       }
-  //     })
-  //     .catch(err => console.log("bad"));
-  // }
 
   componentDidMount() {
     const film = this.getApi(Helper());
@@ -99,17 +73,38 @@ class App extends Component {
   }
 
   getPeopleData(data) {
-    const otherData = data.map(person => {
+    const planetData = data.map(person => {
       return fetch(person.homeworld).then(res => res.json());
     });
 
-    Promise.all(otherData)
+    const speciesData = data.map(person => {
+      return fetch(person.species).then(res => res.json());
+    })
+
+    Promise.all(speciesData)
+    .then(res => {
+      return res.map((species, i) => {
+        return Object.assign(
+          data[i],
+          {species: species.name}
+        )
+      })
+    })
+    .then(newData => {
+      if (newData[0].eye_colors) {
+        this.setState({
+          peopleData: newData
+        })
+      }
+    })
+
+    Promise.all(planetData)
       .then(res => {
         return res.map((planet, i) => {
           return Object.assign(
             data[i],
             { homeworld: planet.name },
-            { population: planet.population }
+            { population: planet.population },
           );
         });
       })
@@ -123,21 +118,6 @@ class App extends Component {
   }
 
   fetchOtherData(data) {
-    // switch( true ) {
-    //     case data[0].model: {
-    //       this.setState({
-    //         vehicleData: data
-    //       })
-    //     }
-    //
-    //     case data[0].terrain: {
-    //       return this.getPlanetData(data);
-    //     }
-    //
-    //     case data[0].species: {
-    //       this.getPeopleData(data);
-    //     }
-    //   }
     if (data.director) {
       return this.setState({
         filmData: [
@@ -180,6 +160,12 @@ class App extends Component {
     });
   }
 
+  favFunc() {
+    this.setState({
+      favClicked: true
+    })
+  }
+
   clickedCard(item) {
     item.classList.toggle("clicked-card");
   }
@@ -209,12 +195,13 @@ class App extends Component {
           selectCategory={this.selectCategory}  
           clickBtn={this.clickedCard}
           favoriteCards={this.state.favoriteCards}
+          favFunc={this.favFunc}          
         />
         <CardDisplay
           itemData={this.state.itemData}
           favorites={this.favoriteCard}
-          favClicked={this.state.favClicked}
           favCards={this.state.favoriteCards}
+          favClicked={this.state.favClicked}
           clickCard={this.clickedCard}
         />
       </div>

@@ -72,7 +72,7 @@ describe("App", () => {
   it("should have a state with properties of planetData, peopleData, vehicleData, filmData, favoriteCards, itemData, and favClicked", () => {
     let stateKeys = Object.keys(wrapper.state());
 
-    expect(stateKeys.length).toEqual(7);
+    expect(stateKeys.length).toEqual(8);
     expect(stateKeys.includes("planetData")).toEqual(true);
     expect(stateKeys.includes("peopleData")).toEqual(true);
     expect(stateKeys.includes("vehicleData")).toEqual(true);
@@ -80,6 +80,7 @@ describe("App", () => {
     expect(stateKeys.includes("favoriteCards")).toEqual(true);
     expect(stateKeys.includes("itemData")).toEqual(true);
     expect(stateKeys.includes("favClicked")).toEqual(true);
+    expect(stateKeys.includes("api")).toEqual(true);
   });
 
   it("should have the correct default state values", () => {

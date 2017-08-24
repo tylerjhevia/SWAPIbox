@@ -59,8 +59,8 @@
   background: red;
 }
 
-.button:focus {
-  background: red;
+.button-clicked {
+  background: orange;
 }
 
 .button-title {
@@ -362,6 +362,7 @@
   left: 0;
   opacity: 1;
   overflow: hidden;
+  z-index: 1;
   /*animation-name: lightSpeedFadeIn;
   animation-duration: 2s;*/
 }
@@ -388,7 +389,7 @@
 
 .r2 {
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 48%;
   width: 5%;
   -webkit-animation: r2Swing 3s infinite linear;
@@ -410,7 +411,7 @@
 
 
 .r2-light-speed {
-    animation: r2LightSpeed 1s infinite linear;
+  animation: r2LightSpeed 1s infinite linear;
 }
 @keyframes r2LightSpeed {
     0% {
@@ -426,4 +427,38 @@
 
 .hide {
   display: none;
+}
+
+.beer-box {
+  position: fixed;
+  top: 57%;
+  transform: rotate(4deg);
+  left: 86%;
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+}
+
+.beer {
+  position: absolute;
+  top: -12px;
+  left: 0px;
+  width: 92px;
+  z-index: 1;
+}
+
+.beer-light-speed {
+  animation: beerLightSpeed .5s infinite linear;
+}
+
+@keyframes beerLightSpeed {
+    0% {
+    transform: rotate(3deg);
+  }
+    50% {
+    transform: rotate(0deg);
+  }
+    100% {
+    transform: rotate(2deg);
+  }
 }

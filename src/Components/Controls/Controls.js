@@ -12,6 +12,7 @@ import topDashBoard from '../../assets/top-dashborad.png';
 import lightSpeed from '../../assets/light speed.mp4';
 import r2d2 from '../../assets/Excited R2D2.mp3';
 import beer from '../../assets/rainier.png';
+import sunGlasses from '../../assets/sunglasses.png';
 import { func } from "prop-types"
 
 class Controls extends Component {
@@ -25,7 +26,11 @@ class Controls extends Component {
       planetButton: 'button',
       vehicleButton: 'button',
       favoriteButton: 'button',
-      beer: 'beer'
+      beer: 'beer',
+      upperDash: 'upper-dash-container',
+      dashBoard: 'controls-container',
+      yodaBox: 'yoda-box',
+      glasses: 'glasses'
     };
   }
 
@@ -37,7 +42,11 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container',
       yodaSpeed: 'yoda-head yoda-light-speed',
       r2Speed: 'r2 r2-light-speed',
-      beer: 'beer beer-light-speed'
+      beer: 'beer beer-light-speed',
+      upperDash: 'upper-dash-container light-speed-shake',
+      dashBoard: 'controls-container light-speed-shake',
+      yodaBox: 'yoda-box yoda-speed-shake',
+      glasses: 'glasses glasses-light-speed'
     })
   }
 
@@ -46,7 +55,11 @@ class Controls extends Component {
       lightSpeed: 'light-speed-container hide',
       yodaSpeed: 'yoda-head',
       r2Speed: 'r2',
-      beer: 'beer'
+      beer: 'beer',
+      upperDash: 'upper-dash-container',
+      dashBoard: 'controls-container',
+      yodaBox: 'yoda-box',
+      glasses: 'glasses'
     })
   }
 
@@ -85,7 +98,6 @@ class Controls extends Component {
     }
   }
 
-
   render() {
 
     const { apiCall, clickBtn, favoriteCards, favClicked, } = this.props;
@@ -99,17 +111,17 @@ class Controls extends Component {
               <source src={ lightSpeed } type='video/webm'></source>
               <source src={ lightSpeed } type='video/mp4'></source>
           </video>
-          <audio className="r2-audio hide" autoPlay >
+          <audio className="r2-audio" autoPlay >
             <source src={ r2d2 } />
           </audio>
         </section>
 
-        <div className='upper-dash-container'>
+        <div className={ this.state.upperDash }>
           <img className='upper-dash' src={ topDashBoard }/>
           <img className={ this.state.r2Speed } src={ r2 }/>
         </div>
 
-        <div className='yoda-box'>
+        <div className={ this.state.yodaBox }>
           <img className={ this.state.yodaSpeed } src={ yodaHead }/>
           <img className='yoda' src={ yoda }/>
         </div>
@@ -118,7 +130,11 @@ class Controls extends Component {
           <img className={ this.state.beer } src={ beer }/>
         </div>
 
-        <section className='controls-container'>
+        <div className='glasses-box'>
+          <img className={ this.state.glasses } src={ sunGlasses }/>
+        </div>
+
+        <section className={ this.state.dashBoard }>
           <img className='dashboard' src={ dashboard } />
 
           <section className="button-container">

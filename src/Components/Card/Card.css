@@ -36,17 +36,13 @@
 }
 
 .card-video-container {
-  position: relative;
-  overflow: hidden;
   width: 200px;
   height: 120px;
-  margin: 10px;
-  background: red;
+  position: relative;
+  overflow: hidden;
   border-radius: 5px;
   margin: auto;
-  margin-top: 10px;
   margin-bottom: 10px;
-  -webkit-box-shadow: 0px 0px 30px #feda4a;
   box-shadow: 0px 0px 30px #feda4a;
 }
 
@@ -55,10 +51,10 @@
 }
 
 .r2 {
+  width: 5%;
   position: absolute;
   top: -16%;
   left: 66%;
-  width: 5%;
   animation: r2Swing 3s infinite linear;
 }
 
@@ -75,7 +71,7 @@
 }
 
 .clicked-card {
-  background-color: magenta;
+  background-color: orange;
   box-shadow: 0px 0px 30px rgb(254, 74, 74);
 }
 

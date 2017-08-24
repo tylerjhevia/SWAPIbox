@@ -9,12 +9,15 @@ const CardDisplay = ({ itemData, favorites, favCards, clickCard, favClicked }) =
   if (favCards.length === 0 && favClicked) {
     return (
       <div className="loading">
+        <div className='no-fav-container'>
+          <p className='no-favorites'>!WARNING!<br></br>NO FAVORITES SELECTED</p>
         </div>
+      </div>
     )
   }
 
   if (itemData) {
-    itemCard = itemData.map((el, i) => 
+    itemCard = itemData.map((el, i) =>
       <Card
         key={i}
         itemData={el}
